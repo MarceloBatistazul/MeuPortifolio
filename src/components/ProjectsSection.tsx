@@ -6,7 +6,7 @@ const ProjectsSection = () => {
     {
       title: "Loja Virtual Joave",
       description: "Plataforma completa de e-commerce com gestão de produtos, carrinho inteligente, pagamentos integrados e dashboard administrativo em tempo real.",
-      image: "/public/img/JoaveLoja.png",
+      image: "/img/JoaveLoja.png",
       tags: ["React", "Node.js", "Mysql", "JWT"],
       github: "null",
       demo: "null",
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
     {
       title: "Ecovel Solutions",
       description: "Site institucional para empresa especializada em segurança privada.",
-      image: "/public/img/Ecovel.jpg",
+      image: "/img/Ecovel.jpg",
       tags: ["React", "typescript", "tailwind", "Git"],
       github: "null",
       demo: null,
