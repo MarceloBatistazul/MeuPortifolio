@@ -15,7 +15,7 @@ const ProjectsSection = () => {
     {
       title: "Ice Telas Redes de Proteção",
       description: "Site institucional para empresa especializada em telas e redes de proteção.",
-      image: "/public/img/IceTelasRedesDeProteção.png",
+      image: "/img/IceTelasRedesDeProteção.png",
       tags: ["React", "TypeScript", "talwind", "Git"],
       github: "null",
       demo: "https://www.icetelas.com.br/",
@@ -24,7 +24,7 @@ const ProjectsSection = () => {
     {
       title: "Imobiliária Meu Lar Imovéis",
       description: "Dashboard administrativo para imobiliária com gerenciamento de imóveis, clientes e agendamentos.",
-      image: "/public/img/Meu Lar imobilaria.jpg",
+      image: "/img/Meu Lar imobilaria.jpg",
       tags: ["React", "Node.js", "REST API", "Geolocation"],
       github: "null",
       demo: "null",
