@@ -67,7 +67,7 @@ const HeroSection = () => {
             </h1>
             
             <p className="animate-fade-up delay-200 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
-              Desenvolvedo com <span className="text-foreground font-medium">React</span>, <span className="text-foreground font-medium">Node.js</span> e <span className="text-foreground font-medium">TypeScript</span>. 
+              Desenvolvendo com <span className="text-foreground font-medium">React</span>, <span className="text-foreground font-medium">Node.js</span> e <span className="text-foreground font-medium">TypeScript</span>. 
               Transformo ideias complexas em produtos digitais elegantes e de alta performance.
             </p>
             
