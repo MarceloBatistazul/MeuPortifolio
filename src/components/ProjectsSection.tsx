@@ -6,7 +6,7 @@ const ProjectsSection = () => {
     {
       title: "Loja Virtual Joave",
       description: "Plataforma completa de e-commerce com gestão de produtos, carrinho inteligente, pagamentos integrados e dashboard administrativo em tempo real.",
-      image: "/public/JoaveLoja.png",
+      image: "/public/img/JoaveLoja.png",
       tags: ["React", "Node.js", "Mysql", "JWT"],
       github: "null",
       demo: "null",
@@ -15,7 +15,7 @@ const ProjectsSection = () => {
     {
       title: "Ice Telas Redes de Proteção",
       description: "Site institucional para empresa especializada em telas e redes de proteção.",
-      image: "/public/IceTelasRedesDeProteção.png",
+      image: "/public/img/IceTelasRedesDeProteção.png",
       tags: ["React", "TypeScript", "talwind", "Git"],
       github: "null",
       demo: "https://www.icetelas.com.br/",
@@ -24,7 +24,7 @@ const ProjectsSection = () => {
     {
       title: "Imobiliária Meu Lar Imovéis",
       description: "Dashboard administrativo para imobiliária com gerenciamento de imóveis, clientes e agendamentos.",
-      image: "/public/Meu Lar imobilaria.jpg",
+      image: "/public/img/Meu Lar imobilaria.jpg",
       tags: ["React", "Node.js", "REST API", "Geolocation"],
       github: "null",
       demo: "null",
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
     {
       title: "Ecovel Solutions",
       description: "Site institucional para empresa especializada em segurança privada.",
-      image: "/public/Ecovel.jpg",
+      image: "/public/img/Ecovel.jpg",
       tags: ["React", "typescript", "tailwind", "Git"],
       github: "null",
       demo: null,

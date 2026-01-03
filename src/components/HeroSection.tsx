@@ -28,7 +28,7 @@ const HeroSection = () => {
                 
                 {
                 <img 
-                  src="/public/FotoPerfilDev.png" 
+                  src="/public/img/FotoPerfilDev.png" 
                   alt="Marcelo Batista"
                   className="w-full h-full object-cover"
                 />
