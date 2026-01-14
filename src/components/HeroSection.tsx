@@ -16,7 +16,7 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 ">
           {/* Profile Photo */}
           <div className="animate-scale-in">
-            <div className="relative group">
+            <div className="relative group"> 
               {/* Decorative rings */}
               <div className="absolute -inset-4 rounded-full border border-primary/20 animate-pulse-glow" />
               <div className="absolute -inset-8 rounded-full border border-primary/10" />
