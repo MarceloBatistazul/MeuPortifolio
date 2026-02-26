@@ -7,7 +7,7 @@ const ProjectsSection = () => {
       title: "Loja Virtual Joave",
       description: "Plataforma completa de e-commerce com gestão de produtos, carrinho inteligente, pagamentos integrados e dashboard administrativo em tempo real.",
       image: "/img/JoaveLoja.png",
-      tags: ["React", "Node.js", "Mysql", "JWT"],
+      tags: ["React", ".NET", "Entity Framework", "Mysql", "JWT"],
       github: "null",
       demo: "null",
       featured: true

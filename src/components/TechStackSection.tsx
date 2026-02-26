@@ -21,9 +21,8 @@ const TechStackSection = () => {
       technologies: [
         { name: "Node.js", level: 90 },
         { name: "Express", level: 88 },
+        { name: ".NET", level: 80 },
         { name: "Spring Boot", level: 80 },
-        { name: "GraphQL", level: 75 },
-        { name: ".NET", level: 60 },
         { name: "Laravel", level: 60 },
       ]
     },
@@ -57,7 +56,7 @@ const TechStackSection = () => {
 
   const additionalSkills = [
     "Clean Code", "SOLID", "Design Patterns", "Agile/Scrum", 
-    "TDD", "REST", "Microservices", "Responsive Design", "UI/UX"
+    "TDD", "REST", "Responsive Design", "UI/UX"
   ];
 
   return (
