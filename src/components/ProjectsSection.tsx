@@ -9,7 +9,7 @@ const ProjectsSection = () => {
       image: "/img/JoaveLoja.png",
       tags: ["React", ".NET", "Entity Framework", "Mysql", "JWT"],
       github: "null",
-      demo: "null",
+      demo: null,
       featured: true
     },
     {
@@ -26,8 +26,8 @@ const ProjectsSection = () => {
       description: "Dashboard administrativo para imobiliária com gerenciamento de imóveis, clientes e agendamentos.",
       image: "/img/Meu Lar imobilaria.jpg",
       tags: ["React", "Node.js", "Express", "REST API", "Geolocation", "MySQL"],
-      github: "null",
-      demo: "null",
+      github: "false",
+      demo: null,
       featured: true
     },
     {
@@ -41,11 +41,11 @@ const ProjectsSection = () => {
     },
     {
       title: "Diario Ile Verte",
-      description: "Ferramenta interna para gestão de  tarefas e avisos.",
+      description: "Ferramenta de uso interno para gestão de tarefas e avisos.",
       image: "/img/ileverte.png",
       tags: ["React", "typescript", "Nest.js", "Prisma", "SupaBase"],
       github: "null",
-      demo: "null",
+      demo: null,
       featured: true
     }
   ];
