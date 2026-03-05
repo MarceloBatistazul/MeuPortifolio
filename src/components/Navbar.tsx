@@ -30,7 +30,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: "/doc/CV Marcelo.docx (2).pdf", label: "CV", isDownload: true },
+    { href: "/doc/CV Marcelo Batista.docx.pdf", label: "CV", isDownload: true },
     { href: "#sobre", label: "Sobre" },
     { href: "#stack", label: "Stack" },
     { href: "#projetos", label: "Projetos" },

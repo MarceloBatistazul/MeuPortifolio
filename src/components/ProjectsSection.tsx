@@ -25,7 +25,7 @@ const ProjectsSection = () => {
       title: "Imobiliária Meu Lar Imovéis",
       description: "Dashboard administrativo para imobiliária com gerenciamento de imóveis, clientes e agendamentos.",
       image: "/img/Meu Lar imobilaria.jpg",
-      tags: ["React", "Node.js", "REST API", "Geolocation"],
+      tags: ["React", "Node.js", "Express", "REST API", "Geolocation", "MySQL"],
       github: "null",
       demo: "null",
       featured: true
@@ -37,6 +37,15 @@ const ProjectsSection = () => {
       tags: ["React", "typescript", "tailwind", "Git"],
       github: "null",
       demo: null,
+      featured: true
+    },
+    {
+      title: "Diario Ile Verte",
+      description: "Ferramenta interna para gestão de  tarefas e avisos.",
+      image: "/img/ileverte.png",
+      tags: ["React", "typescript", "Nest.js", "Prisma", "SupaBase"],
+      github: "null",
+      demo: "null",
       featured: true
     }
   ];

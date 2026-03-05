@@ -22,7 +22,8 @@ const TechStackSection = () => {
         { name: "Node.js", level: 90 },
         { name: "Express", level: 88 },
         { name: ".NET", level: 80 },
-        { name: "Spring Boot", level: 80 },
+        { name: "Nest.js", level: 80 },
+        { name: "Spring Boot", level: 75 },
         { name: "Laravel", level: 60 },
       ]
     },
