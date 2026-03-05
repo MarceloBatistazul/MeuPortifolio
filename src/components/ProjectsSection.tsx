@@ -47,6 +47,15 @@ const ProjectsSection = () => {
       github: "null",
       demo: null,
       featured: true
+    },
+    {
+      title: "Landpage MB Code Solution",
+      description: "Landpage para empresa de desenvolvimento de software, a qual presto serviço freelance.",
+      image: "/img/mbcode.png",
+      tags: ["React", "typescript", "tailwind", "vite", "Git"],
+      github: "null",
+      demo: "https://mbcodesolutions.vercel.app/#home",
+      featured: true
     }
   ];
 
