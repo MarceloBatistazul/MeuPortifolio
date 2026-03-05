@@ -49,7 +49,7 @@ const ProjectsSection = () => {
       featured: true
     },
     {
-      title: "Landpage MB Code Solution",
+      title: "MB Code Solutions",
       description: "Landpage para empresa de desenvolvimento de software, a qual presto serviço freelance.",
       image: "/img/mbcode.png",
       tags: ["React", "typescript", "tailwind", "vite", "Git"],
