@@ -17,8 +17,8 @@ const Footer = () => {
     { icon: Mail, href: "mailto:batistazul37@gmail.com", label: "Email" },
 
     // Empresa MB Code Solution
-    { icon: Globe, href: "https://seudominio.com", label: "MB Code Solution Site" },
-    { icon: Instagram, href: "https://instagram.com/seuinstagram", label: "MB Code Solution Instagram" },
+    { icon: Globe, href: "https://mbcodesolutions.vercel.app/", label: "MB Code Solution Site" },
+    { icon: Instagram, href: "https://www.instagram.com/mb_code_solutions?igsh=MWFxdmZsM2U0d25xbg==", label: "MB Code Solution Instagram" },
   ];
 
   const scrollToTop = () => {
@@ -56,7 +56,7 @@ const Footer = () => {
             {/* Company Description */}
             <div className="space-y-2">
               <a
-                href="https://seudominio.com"
+                href="https://mbcodesolutions.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary font-semibold tracking-wide hover:underline transition"
