@@ -105,6 +105,11 @@ const HeroSection = () => {
               </div>
 
               <div>
+                <p className="text-2xl md:text-3xl font-semibold">5+</p>
+                <p className="text-sm text-muted-foreground">clientes</p>
+              </div>
+
+              <div>
                 <p className="text-2xl md:text-3xl font-semibold">14+</p>
                 <p className="text-sm text-muted-foreground">tecnologias</p>
               </div>
