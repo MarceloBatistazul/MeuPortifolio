@@ -25,7 +25,7 @@ const AboutSection = () => {
   ];
 
   const stats = [
-  { value: "2", label: "Quase 2 anos de experiência", suffix: "" },
+  { value: "2+", label: "2 anos de experiência", suffix: "" },
   { value: "5+", label: "Projetos Concluídos", suffix: "" },
   { value: "14+", label: "Tecnologias Utilizadas" }
 ];
