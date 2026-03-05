@@ -2,6 +2,8 @@ import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ProjectsSection = () => {
+  const isValidLink = (value: string | null) => Boolean(value && value !== "null" && value !== "false");
+
   const projects = [
     {
       title: "Loja Virtual Joave",
@@ -94,28 +96,35 @@ const ProjectsSection = () => {
                 <img 
                   src={project.image} 
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-sm"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
                 
                 {/* Overlay Actions */}
                 <div className="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <a 
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 rounded-full glass text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-                  >
-                    <Github className="w-6 h-6" />
-                  </a>
+                  {isValidLink(project.github) && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Abrir repositório do projeto ${project.title}`}
+                      className="p-4 rounded-full glass text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
+                    >
+                      <Github className="w-6 h-6" aria-hidden="true" />
+                    </a>
+                  )}
                   {project.demo && (
                     <a 
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Abrir demo do projeto ${project.title}`}
                       className="p-4 rounded-full glass text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                     >
-                      <ExternalLink className="w-6 h-6" />
+                      <ExternalLink className="w-6 h-6" aria-hidden="true" />
                     </a>
                   )}
                 </div>
@@ -134,7 +143,7 @@ const ProjectsSection = () => {
                   <h3 className="font-display text-xl font-semibold group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" aria-hidden="true" />
                 </div>
                 <p className="text-muted-foreground text-sm mb-6 leading-relaxed line-clamp-2">
                   {project.description}
@@ -169,22 +178,26 @@ const ProjectsSection = () => {
                   {project.title}
                 </h3>
                 <div className="flex gap-2">
-                  <a 
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
-                  >
-                    <Github className="w-4 h-4" />
-                  </a>
+                  {isValidLink(project.github) && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Abrir repositório do projeto ${project.title}`}
+                      className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+                    >
+                      <Github className="w-4 h-4" aria-hidden="true" />
+                    </a>
+                  )}
                   {project.demo && (
                     <a 
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Abrir demo do projeto ${project.title}`}
                       className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" />
                     </a>
                   )}
                 </div>
@@ -208,10 +221,10 @@ const ProjectsSection = () => {
 
         <div className="text-center animate-fade-up delay-600">
           <Button variant="outline" size="lg" className="group" asChild>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-              <Github className="w-4 h-4 mr-2" />
+            <a href="https://github.com/MarceloBatistazul" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil GitHub de Marcelo Batista">
+              <Github className="w-4 h-4 mr-2" aria-hidden="true" />
               Ver mais no GitHub
-              <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
             </a>
           </Button>
         </div>

@@ -3,12 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Full Stack Developer | Portfolio</title>
-    <link rel="icon" type="image/png" href="/public/img/icons8-dev-641.png" />
+    <title>Marcelo Batista | Full Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio de Marcelo Batista, desenvolvedor Full Stack com foco em React, Node.js e .NET para construir produtos digitais modernos e performáticos."
+    />
+    <meta
+      name="keywords"
+      content="Marcelo Batista, Full Stack Developer, React, Node.js, .NET, TypeScript, Portfolio"
+    />
+    <meta name="author" content="Marcelo Batista" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0B0F19" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Marcelo Batista | Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Projetos e soluções web com React, Node.js e .NET, com foco em performance, experiência do usuário e qualidade de código."
+    />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/img/FotoPerfilDev.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Marcelo Batista | Full Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Portfolio com projetos de desenvolvimento Full Stack em React, Node.js e .NET."
+    />
+    <meta name="twitter:image" content="/img/FotoPerfilDev.png" />
+
+    <link rel="canonical" href="/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="/img/icons8-dev-641.png" />
   </head>
 
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        var canonicalUrl = window.location.origin + window.location.pathname;
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute("href", canonicalUrl);
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute("content", canonicalUrl);
+
+        var person = {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Marcelo Batista",
+          jobTitle: "Full Stack Developer",
+          description:
+            "Desenvolvedor Full Stack com foco em React, Node.js, .NET e construção de produtos digitais performáticos.",
+          url: window.location.origin,
+          email: "mailto:batistazul37@gmail.com",
+          sameAs: [
+            "https://github.com/MarceloBatistazul",
+            "https://www.linkedin.com/in/marcelo-batista-561871219/",
+            "https://mbcodesolutions.vercel.app/"
+          ]
+        };
+
+        var ld = document.createElement("script");
+        ld.type = "application/ld+json";
+        ld.text = JSON.stringify(person);
+        document.head.appendChild(ld);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

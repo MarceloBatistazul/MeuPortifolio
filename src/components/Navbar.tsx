@@ -95,6 +95,8 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 rounded-lg text-foreground hover:bg-card/50 transition-colors"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation-menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -103,6 +105,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
+        id="mobile-navigation-menu"
         className={`md:hidden absolute top-full left-0 right-0 glass-strong border-t border-border/50 transition-all duration-300 ${
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}

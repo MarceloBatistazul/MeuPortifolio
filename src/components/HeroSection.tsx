@@ -31,8 +31,12 @@ const HeroSection = () => {
                 <img
                   src="/img/FotoPerfilDev.png"
                   alt="Marcelo Batista - Full Stack Developer"
+                  width={1024}
+                  height={1024}
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  sizes="(min-width: 1024px) 20rem, (min-width: 768px) 16rem, 12rem"
                   decoding="async"
                 />
               </div>
@@ -120,7 +124,7 @@ const HeroSection = () => {
               <Button variant="hero" size="xl" className="group" asChild>
                 <a href="#projetos">
                   Ver Projetos
-                  <ArrowDown className="w-4 h-4 ml-2 group-hover:translate-y-1 transition-transform" />
+                  <ArrowDown className="w-4 h-4 ml-2 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                 </a>
               </Button>
 
@@ -144,7 +148,7 @@ const HeroSection = () => {
                   aria-label={social.label}
                   className="group relative p-3.5 rounded-full border border-border bg-card/30 backdrop-blur-sm text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-500"
                 >
-                  <social.icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                  <social.icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
                 </a>
               ))}
             </div>

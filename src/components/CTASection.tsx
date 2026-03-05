@@ -33,14 +33,19 @@ const CTASection = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
               <Button variant="hero" size="xl" className="group" asChild>
-                <a href="batistazul@gmail.com">
-                  <Mail className="w-5 h-5 mr-2" />
+                <a href="mailto:batistazul37@gmail.com" aria-label="Enviar email para Marcelo Batista">
+                  <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
                   Entrar em Contato
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </a>
               </Button>
               <Button variant="heroOutline" size="xl" className="group" asChild>
-                <a href="https://www.linkedin.com/in/marcelo-batista-561871219/" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.linkedin.com/in/marcelo-batista-561871219/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Abrir perfil do LinkedIn de Marcelo Batista"
+                >
                   Conectar no LinkedIn
                 </a>
               </Button>
@@ -53,7 +58,8 @@ const CTASection = () => {
               </p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 text-sm">
                 <a 
-                  href="mailto:contato@email.com" 
+                  href="mailto:batistazul37@gmail.com"
+                  aria-label="Enviar email para Marcelo Batista"
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
                   batistazul37@gmail.com
@@ -63,6 +69,7 @@ const CTASection = () => {
                   href="https://github.com/MarceloBatistazul" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="Abrir GitHub de Marcelo Batista"
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
                   github.com/MarceloBatistazul
@@ -72,6 +79,7 @@ const CTASection = () => {
                   href="https://www.linkedin.com/in/marcelo-batista-561871219/" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="Abrir LinkedIn de Marcelo Batista"
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
                   linkedin.com/in/marcelo-batista
