@@ -83,7 +83,7 @@ const HeroSection = () => {
 
             <div className="animate-fade-up delay-300 flex gap-10 justify-center lg:justify-start mb-10">
               <div>
-                <p className="text-2xl md:text-3xl font-semibold">1+</p>
+                <p className="text-2xl md:text-3xl font-semibold">2+</p>
                 <p className="text-sm text-muted-foreground">ano</p>
               </div>
 
