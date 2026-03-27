@@ -347,11 +347,10 @@ const CertificationsSection = () => {
 
         <div className="text-center mb-16">
           <h2 className="font-display text-display-sm md:text-display-md mb-6 animate-fade-up delay-100">
-            Apenas os 4 principais na abertura, com <span className="text-gradient">expansao sob demanda</span>
+            ######### <span className="text-gradient"> ############# </span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-light animate-fade-up delay-200 leading-relaxed">
-            O site abre com foco total nos 4 certificados prioritarios. Os demais aparecem apenas quando a pessoa
-            clicar no botao abaixo, com animacao moderna e fluida.
+            #### sessão em manutenção #####
           </p>
         </div>
 
