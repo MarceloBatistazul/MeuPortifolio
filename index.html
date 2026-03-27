@@ -1,16 +1,17 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marcelo Batista | Full Stack Developer</title>
+
+    <title>Marcelo Batista | Desenvolvedor Full Stack (.NET, Node.js, React)</title>
     <meta
       name="description"
-      content="Portfolio de Marcelo Batista, desenvolvedor Full Stack com foco em React, Node.js e .NET para construir produtos digitais modernos e performáticos."
+      content="Portfólio de Marcelo Batista, Desenvolvedor Full Stack em Ribeirão Preto-SP, com foco em C#/.NET, Node.js (NestJS), React e TypeScript para construção de aplicações web escaláveis e seguras."
     />
     <meta
       name="keywords"
-      content="Marcelo Batista, Full Stack Developer, React, Node.js, .NET, TypeScript, Portfolio"
+      content="Marcelo Batista, Desenvolvedor Full Stack, C#, .NET, ASP.NET Core, Node.js, NestJS, React, TypeScript, Portfólio"
     />
     <meta name="author" content="Marcelo Batista" />
     <meta name="robots" content="index, follow" />
@@ -18,19 +19,21 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:title" content="Marcelo Batista | Full Stack Developer" />
+    <meta property="og:site_name" content="Portfólio Marcelo Batista" />
+    <meta property="og:title" content="Marcelo Batista | Desenvolvedor Full Stack" />
     <meta
       property="og:description"
-      content="Projetos e soluções web com React, Node.js e .NET, com foco em performance, experiência do usuário e qualidade de código."
+      content="Projetos Full Stack com C#/.NET, Node.js (NestJS), React e TypeScript, com foco em arquitetura, segurança e performance."
     />
     <meta property="og:url" content="/" />
     <meta property="og:image" content="/img/FotoPerfilDev.png" />
+    <meta property="og:image:alt" content="Foto de perfil de Marcelo Batista, Desenvolvedor Full Stack" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Marcelo Batista | Full Stack Developer" />
+    <meta name="twitter:title" content="Marcelo Batista | Desenvolvedor Full Stack" />
     <meta
       name="twitter:description"
-      content="Portfolio com projetos de desenvolvimento Full Stack em React, Node.js e .NET."
+      content="Portfólio com projetos de desenvolvimento Full Stack em C#/.NET, Node.js (NestJS), React e TypeScript."
     />
     <meta name="twitter:image" content="/img/FotoPerfilDev.png" />
 
@@ -47,6 +50,7 @@
         var canonicalUrl = window.location.origin + window.location.pathname;
         var canonical = document.querySelector('link[rel="canonical"]');
         if (canonical) canonical.setAttribute("href", canonicalUrl);
+
         var ogUrl = document.querySelector('meta[property="og:url"]');
         if (ogUrl) ogUrl.setAttribute("content", canonicalUrl);
 
@@ -54,22 +58,65 @@
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Marcelo Batista",
-          jobTitle: "Full Stack Developer",
+          jobTitle: "Full Stack Software Developer",
           description:
-            "Desenvolvedor Full Stack com foco em React, Node.js, .NET e construção de produtos digitais performáticos.",
-          url: window.location.origin,
+            "Desenvolvedor Full Stack com foco em C#/.NET, Node.js (NestJS), React e TypeScript para criação de aplicações web completas.",
           email: "mailto:batistazul37@gmail.com",
+          telephone: "+55 16 99742-9305",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Ribeirão Preto",
+            addressRegion: "SP",
+            addressCountry: "BR"
+          },
+          url: canonicalUrl,
+          image: window.location.origin + "/img/FotoPerfilDev.png",
+          knowsAbout: [
+            "C#",
+            ".NET",
+            "ASP.NET Core",
+            "Node.js",
+            "NestJS",
+            "React",
+            "TypeScript",
+            "REST APIs",
+            "Domain-Driven Design",
+            "MySQL",
+            "PostgreSQL",
+            "MongoDB"
+          ],
           sameAs: [
             "https://github.com/MarceloBatistazul",
             "https://www.linkedin.com/in/marcelo-batista-561871219/",
             "https://mbcodesolutions.vercel.app/"
-          ]
+          ],
+          worksFor: {
+            "@type": "Organization",
+            name: "MB Code Solutions"
+          }
         };
 
-        var ld = document.createElement("script");
-        ld.type = "application/ld+json";
-        ld.text = JSON.stringify(person);
-        document.head.appendChild(ld);
+        var website = {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Portfólio Marcelo Batista",
+          url: canonicalUrl,
+          inLanguage: "pt-BR",
+          author: {
+            "@type": "Person",
+            name: "Marcelo Batista"
+          }
+        };
+
+        var personLd = document.createElement("script");
+        personLd.type = "application/ld+json";
+        personLd.text = JSON.stringify(person);
+        document.head.appendChild(personLd);
+
+        var websiteLd = document.createElement("script");
+        websiteLd.type = "application/ld+json";
+        websiteLd.text = JSON.stringify(website);
+        document.head.appendChild(websiteLd);
       })();
     </script>
     <script type="module" src="/src/main.tsx"></script>

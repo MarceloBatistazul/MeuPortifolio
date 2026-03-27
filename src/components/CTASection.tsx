@@ -1,17 +1,15 @@
-import { Button } from "@/components/ui/button";
+﻿import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
 
 const CTASection = () => {
   return (
     <section id="contato" className="py-32 relative overflow-hidden">
-      {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-radial" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/8 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute inset-0 bg-noise pointer-events-none" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Decorative top */}
           <div className="flex justify-center mb-10 animate-fade-up">
             <div className="flex items-center gap-3 px-5 py-2.5 rounded-full glass">
               <Sparkles className="w-4 h-4 text-primary" />
@@ -21,16 +19,16 @@ const CTASection = () => {
 
           <div className="text-center">
             <h2 className="font-display text-display-sm md:text-display-md lg:text-display-lg mb-8 animate-fade-up delay-100">
-              Vamos construir algo
+              Vamos construir uma
               <br />
-              <span className="text-gradient">incrível juntos</span>
+              <span className="text-gradient">solução eficiente juntos</span>
             </h2>
-            
+
             <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-light leading-relaxed animate-fade-up delay-200">
-              Estou sempre aberto a novos desafios e oportunidades. 
-              Entre em contato e vamos transformar sua ideia em realidade.
+              Aberto a oportunidades como Desenvolvedor Full Stack em projetos freelancer, colaborações e novas
+              posições no mercado.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
               <Button variant="hero" size="xl" className="group" asChild>
                 <a href="mailto:batistazul37@gmail.com" aria-label="Enviar email para Marcelo Batista">
@@ -50,14 +48,11 @@ const CTASection = () => {
                 </a>
               </Button>
             </div>
-            
-            {/* Additional contact info */}
+
             <div className="mt-16 pt-10 border-t border-border/50 animate-fade-up delay-400">
-              <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest font-medium">
-                Ou me encontre em
-              </p>
+              <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest font-medium">Canais diretos</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 text-sm">
-                <a 
+                <a
                   href="mailto:batistazul37@gmail.com"
                   aria-label="Enviar email para Marcelo Batista"
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
@@ -65,9 +60,9 @@ const CTASection = () => {
                   batistazul37@gmail.com
                 </a>
                 <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-                <a 
-                  href="https://github.com/MarceloBatistazul" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/MarceloBatistazul"
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Abrir GitHub de Marcelo Batista"
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
@@ -75,14 +70,14 @@ const CTASection = () => {
                   github.com/MarceloBatistazul
                 </a>
                 <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-                <a 
-                  href="https://www.linkedin.com/in/marcelo-batista-561871219/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/marcelo-batista-561871219/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Abrir LinkedIn de Marcelo Batista"
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
-                  linkedin.com/in/marcelo-batista
+                  linkedin.com/in/marcelo-batista-561871219
                 </a>
               </div>
             </div>
