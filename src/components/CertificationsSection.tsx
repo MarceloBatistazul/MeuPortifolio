@@ -238,10 +238,12 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
   const detailsPath = `/certificacoes/${cert.id}`;
   const downloadPath = `/certificacoes/${cert.id}/download`;
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false);
+  const [isPreviewError, setIsPreviewError] = useState(false);
   const [isMobilePreview, setIsMobilePreview] = useState(false);
 
   useEffect(() => {
     setIsPreviewLoaded(false);
+    setIsPreviewError(false);
   }, [certificatePath]);
 
   useEffect(() => {
@@ -251,7 +253,6 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
     const handleMediaChange = (event: MediaQueryListEvent | MediaQueryList) => {
       const matches = "matches" in event ? event.matches : mediaQuery.matches;
       setIsMobilePreview(matches);
-      if (matches) setIsPreviewLoaded(true);
     };
 
     handleMediaChange(mediaQuery);
@@ -274,7 +275,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </span>
         )}
 
-        {!isPreviewLoaded && !isMobilePreview && (
+        {!isPreviewLoaded && !isPreviewError && (
           <div className="absolute inset-0 z-[1] overflow-hidden bg-card/80">
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
             <div className="h-full w-full p-4 md:p-5 flex flex-col gap-3 md:gap-4">
@@ -291,23 +292,40 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </div>
         )}
 
-        {isMobilePreview ? (
-          <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm">
-            Prévia otimizada para mobile
+        {isPreviewError ? (
+          <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm px-3 text-center">
+            Prévia indisponível no dispositivo
           </div>
+        ) : isMobilePreview ? (
+          <iframe
+            src={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            title={`Pré-visualização do certificado ${cert.title}`}
+            loading="lazy"
+            onLoad={() => setIsPreviewLoaded(true)}
+            onError={() => {
+              setIsPreviewLoaded(true);
+              setIsPreviewError(true);
+            }}
+            className={`h-full w-full pointer-events-none transition-opacity duration-300 border-0 ${
+              isPreviewLoaded ? "opacity-100" : "opacity-0"
+            }`}
+          />
         ) : (
           <object
             data={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
             type="application/pdf"
             aria-label={`Pré-visualização do certificado ${cert.title}`}
             onLoad={() => setIsPreviewLoaded(true)}
-            onError={() => setIsPreviewLoaded(true)}
+            onError={() => {
+              setIsPreviewLoaded(true);
+              setIsPreviewError(true);
+            }}
             className={`h-full w-full pointer-events-none transition-opacity duration-300 ${
               isPreviewLoaded ? "opacity-100" : "opacity-0"
             }`}
           >
-            <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm">
-              Prévia indisponível
+            <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm px-3 text-center">
+              Prévia indisponível no dispositivo
             </div>
           </object>
         )}
