@@ -5,7 +5,6 @@ import {
   ChevronUp,
   Download,
   ExternalLink,
-  FileText,
 } from "lucide-react";
 
 type Certification = {
@@ -259,12 +258,18 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
         )}
 
         {!isPreviewLoaded && (
-          <div className="absolute inset-0 z-[1] overflow-hidden bg-gradient-to-br from-card via-secondary/30 to-card">
-            <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-primary/15 blur-2xl animate-pulse" />
-            <div className="absolute -bottom-12 -right-12 h-40 w-40 rounded-full bg-primary/10 blur-3xl animate-pulse" />
-            <div className="relative h-full w-full flex flex-col items-center justify-center gap-2 text-muted-foreground/90">
-              <FileText className="h-6 w-6 animate-pulse" />
-              <span className="text-sm">Carregando preview...</span>
+          <div className="absolute inset-0 z-[1] overflow-hidden bg-card/80">
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+            <div className="h-full w-full p-4 md:p-5 flex flex-col gap-3 md:gap-4">
+              <div className="h-4 w-24 md:w-28 rounded bg-secondary/80 animate-pulse" />
+              <div className="h-5 w-4/5 rounded bg-secondary/70 animate-pulse" />
+              <div className="h-5 w-3/5 rounded bg-secondary/70 animate-pulse" />
+              <div className="flex-1 rounded-xl bg-secondary/65 animate-pulse" />
+              <div className="grid grid-cols-3 gap-2">
+                <div className="h-3 rounded bg-secondary/70 animate-pulse" />
+                <div className="h-3 rounded bg-secondary/70 animate-pulse" />
+                <div className="h-3 rounded bg-secondary/70 animate-pulse" />
+              </div>
             </div>
           </div>
         )}
@@ -275,11 +280,12 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           aria-label={`Pré-visualização do certificado ${cert.title}`}
           onLoad={() => setIsPreviewLoaded(true)}
           onError={() => setIsPreviewLoaded(true)}
-          className="h-full w-full pointer-events-none"
+          className={`h-full w-full pointer-events-none transition-opacity duration-300 ${
+            isPreviewLoaded ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-secondary/60 to-card text-muted-foreground">
-            <FileText className="h-6 w-6" />
-            <span className="text-sm">Prévia indisponível</span>
+          <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm">
+            Prévia indisponível
           </div>
         </object>
 
