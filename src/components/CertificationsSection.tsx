@@ -238,10 +238,27 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
   const detailsPath = `/certificacoes/${cert.id}`;
   const downloadPath = `/certificacoes/${cert.id}/download`;
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false);
+  const [isMobilePreview, setIsMobilePreview] = useState(false);
 
   useEffect(() => {
     setIsPreviewLoaded(false);
   }, [certificatePath]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 768px), (pointer: coarse)");
+    const handleMediaChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      const matches = "matches" in event ? event.matches : mediaQuery.matches;
+      setIsMobilePreview(matches);
+      if (matches) setIsPreviewLoaded(true);
+    };
+
+    handleMediaChange(mediaQuery);
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => mediaQuery.removeEventListener("change", handleMediaChange);
+  }, []);
 
   return (
     <article className="group premium-card p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -257,7 +274,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </span>
         )}
 
-        {!isPreviewLoaded && (
+        {!isPreviewLoaded && !isMobilePreview && (
           <div className="absolute inset-0 z-[1] overflow-hidden bg-card/80">
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
             <div className="h-full w-full p-4 md:p-5 flex flex-col gap-3 md:gap-4">
@@ -274,20 +291,26 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </div>
         )}
 
-        <object
-          data={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-          type="application/pdf"
-          aria-label={`Pré-visualização do certificado ${cert.title}`}
-          onLoad={() => setIsPreviewLoaded(true)}
-          onError={() => setIsPreviewLoaded(true)}
-          className={`h-full w-full pointer-events-none transition-opacity duration-300 ${
-            isPreviewLoaded ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        {isMobilePreview ? (
           <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm">
-            Prévia indisponível
+            Prévia otimizada para mobile
           </div>
-        </object>
+        ) : (
+          <object
+            data={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            type="application/pdf"
+            aria-label={`Pré-visualização do certificado ${cert.title}`}
+            onLoad={() => setIsPreviewLoaded(true)}
+            onError={() => setIsPreviewLoaded(true)}
+            className={`h-full w-full pointer-events-none transition-opacity duration-300 ${
+              isPreviewLoaded ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm">
+              Prévia indisponível
+            </div>
+          </object>
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent pointer-events-none" />
       </a>
