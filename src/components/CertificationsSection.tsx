@@ -240,11 +240,14 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false);
   const [isPreviewError, setIsPreviewError] = useState(false);
   const [isMobilePreview, setIsMobilePreview] = useState(false);
+  const [mobileThumbnailSrc, setMobileThumbnailSrc] = useState<string | null>(null);
   const previewView = isMobilePreview ? "FitV" : "FitH";
+  const shouldUseCanvasMobilePreview = isMobilePreview;
 
   useEffect(() => {
     setIsPreviewLoaded(false);
     setIsPreviewError(false);
+    setMobileThumbnailSrc(null);
   }, [certificatePath]);
 
   useEffect(() => {
@@ -262,6 +265,63 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
     return () => mediaQuery.removeEventListener("change", handleMediaChange);
   }, []);
 
+  useEffect(() => {
+    if (!shouldUseCanvasMobilePreview) return;
+
+    let cancelled = false;
+    let pdfCleanup: (() => void) | null = null;
+
+    const generateMobileThumbnail = async () => {
+      try {
+        const pdfjs = await import("pdfjs-dist");
+        const loadingTask = pdfjs.getDocument({
+          url: certificatePath,
+          disableWorker: true,
+        });
+        pdfCleanup = () => loadingTask.destroy();
+
+        const pdf = await loadingTask.promise;
+        const page = await pdf.getPage(1);
+        const baseViewport = page.getViewport({ scale: 1 });
+        const targetWidth = 560;
+        const scale = targetWidth / baseViewport.width;
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        if (!context) throw new Error("Canvas 2D context unavailable");
+
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+
+        await page.render({
+          canvasContext: context,
+          viewport,
+        }).promise;
+
+        const thumbnailDataUrl = canvas.toDataURL("image/webp", 0.82);
+        if (!cancelled) {
+          setMobileThumbnailSrc(thumbnailDataUrl);
+          setIsPreviewLoaded(true);
+        }
+      } catch {
+        if (!cancelled) {
+          setIsPreviewLoaded(true);
+          setIsPreviewError(true);
+        }
+      }
+    };
+
+    setIsPreviewLoaded(false);
+    setIsPreviewError(false);
+    generateMobileThumbnail();
+
+    return () => {
+      cancelled = true;
+      if (pdfCleanup) pdfCleanup();
+    };
+  }, [certificatePath, shouldUseCanvasMobilePreview]);
+
   return (
     <article className="group premium-card p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <a
@@ -276,7 +336,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </span>
         )}
 
-        {!isPreviewLoaded && !isPreviewError && (
+        {!isPreviewLoaded && !isPreviewError && !shouldUseCanvasMobilePreview && (
           <div className="absolute inset-0 z-[1] overflow-hidden bg-card/80">
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
             <div className="h-full w-full p-4 md:p-5 flex flex-col gap-3 md:gap-4">
@@ -293,7 +353,21 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </div>
         )}
 
-        {isPreviewError ? (
+        {shouldUseCanvasMobilePreview ? (
+          mobileThumbnailSrc ? (
+            <img
+              src={mobileThumbnailSrc}
+              alt={`Miniatura da primeira página do certificado ${cert.title}`}
+              className="h-full w-full object-contain bg-card/70"
+              loading="lazy"
+            />
+          ) : (
+            <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-secondary/60 to-card text-center px-4">
+              <span className="text-sm font-medium text-foreground">Gerando prévia do certificado</span>
+              <span className="text-xs text-muted-foreground">Toque para abrir o PDF completo</span>
+            </div>
+          )
+        ) : isPreviewError ? (
           <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm px-3 text-center">
             Prévia indisponível no dispositivo
           </div>
