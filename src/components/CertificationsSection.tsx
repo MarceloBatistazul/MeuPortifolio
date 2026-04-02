@@ -240,6 +240,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
   const [isPreviewLoaded, setIsPreviewLoaded] = useState(false);
   const [isPreviewError, setIsPreviewError] = useState(false);
   const [isMobilePreview, setIsMobilePreview] = useState(false);
+  const previewView = isMobilePreview ? "FitV" : "FitH";
 
   useEffect(() => {
     setIsPreviewLoaded(false);
@@ -267,7 +268,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
         href={certificatePath}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative rounded-2xl border border-border/80 overflow-hidden mb-5 aspect-[4/3] bg-card/60 block ring-1 ring-transparent transition-all duration-300 group-hover:ring-primary/25"
+        className="relative rounded-2xl border border-border/80 overflow-hidden mb-5 aspect-[3/4] sm:aspect-[4/3] bg-card/60 block ring-1 ring-transparent transition-all duration-300 group-hover:ring-primary/25"
       >
         {typeof rank === "number" && (
           <span className="absolute top-3 left-3 z-10 rounded-lg border border-primary/40 bg-primary/20 px-2 py-1 text-xs font-semibold text-primary backdrop-blur-sm">
@@ -298,7 +299,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           </div>
         ) : isMobilePreview ? (
           <iframe
-            src={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            src={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=${previewView}`}
             title={`Pré-visualização do certificado ${cert.title}`}
             loading="lazy"
             onLoad={() => setIsPreviewLoaded(true)}
@@ -312,7 +313,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           />
         ) : (
           <object
-            data={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            data={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=${previewView}`}
             type="application/pdf"
             aria-label={`Pré-visualização do certificado ${cert.title}`}
             onLoad={() => setIsPreviewLoaded(true)}
