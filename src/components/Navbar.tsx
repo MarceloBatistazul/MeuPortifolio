@@ -95,8 +95,8 @@ const Navbar = () => {
 
       <div
         id="mobile-navigation-menu"
-        className={`md:hidden absolute top-full left-0 right-0 glass-strong border-t border-border/50 transition-all duration-300 ${
-          isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+        className={`md:hidden absolute top-full left-0 right-0 glass-strong mobile-nav-surface border-t border-border/50 overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+          isMobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
         <div className="container mx-auto px-6 py-6 flex flex-col gap-2">

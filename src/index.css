@@ -225,10 +225,39 @@
   /* Glass effect */
   .glass {
     @apply bg-card/40 backdrop-blur-xl border border-border/50;
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
   }
 
   .glass-strong {
     @apply bg-card/60 backdrop-blur-2xl border border-border/60;
+    -webkit-backdrop-filter: blur(32px);
+    backdrop-filter: blur(32px);
+  }
+
+  .mobile-nav-surface {
+    background-color: hsl(var(--card) / 0.97);
+  }
+
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .glass,
+    .glass-strong {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background-color: hsl(var(--card) / 0.96);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .glass-strong {
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      background-color: hsl(var(--card) / 0.96);
+    }
+
+    .mobile-nav-surface {
+      background-color: hsl(var(--card) / 0.99);
+    }
   }
 
   /* Premium card */
