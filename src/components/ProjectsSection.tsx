@@ -29,7 +29,7 @@ const ProjectsSection = () => {
       title: "Meu Lar Imobiliária - Sistema Web",
       description:
         "Sistema com área administrativa para gestão de imóveis e leads, incluindo pipeline comercial, autenticação JWT e API REST com Node.js/Express.",
-      image: "/img/Meu Lar imobilaria.jpg",
+      image: "/img/Meu Lar imobiliaria.jpg",
       tags: ["React", "TypeScript", "Node.js", "Express", "MySQL", "JWT", "REST API"],
       github: null,
       demo: null,

@@ -92,7 +92,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-        <div className="mt-8 premium-card p-8 animate-fade-up delay-[550ms]">
+        <div className="mt-8 premium-card p-8 animate-fade-up" style={{ animationDelay: "550ms" }}>
           <p className="text-sm text-muted-foreground mb-4 font-medium uppercase tracking-widest">Idiomas</p>
           <div className="flex flex-wrap gap-3">
             {languages.map((language) => (

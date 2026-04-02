@@ -20,7 +20,7 @@ const HeroSection = () => {
 
               <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden avatar-glow-lg group-hover:scale-105 transition-transform duration-700">
                 <img
-                  src="/img/FotoPerfilDev.png"
+                  src="/img/FotoPerfilDev.webp"
                   alt="Marcelo Batista - Full Stack Developer"
                   width={1024}
                   height={1024}
@@ -84,7 +84,7 @@ const HeroSection = () => {
             <div className="animate-fade-up delay-300 flex gap-10 justify-center lg:justify-start mb-10">
               <div>
                 <p className="text-2xl md:text-3xl font-semibold">2+</p>
-                <p className="text-sm text-muted-foreground">ano</p>
+                <p className="text-sm text-muted-foreground">anos</p>
               </div>
 
               <div>

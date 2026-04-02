@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from "react";
+﻿import { memo, useEffect, useMemo, useState } from "react";
 import {
   Award,
   ChevronDown,
@@ -6,8 +6,6 @@ import {
   Download,
   ExternalLink,
   FileText,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 
 type Certification = {
@@ -16,62 +14,62 @@ type Certification = {
   title: string;
   issuer: string;
   track: string;
-  level: "Fundamentos" | "Base" | "Intermediario" | "Avancado";
+  level: "Fundamentos" | "Base" | "Intermediário" | "Avançado";
   year: string;
-  pillar: "seguranca" | "backend" | "frontend" | "cloud" | "fundamentos";
+  pillar: "segurança" | "backend" | "frontend" | "cloud" | "fundamentos";
 };
 
 const certifications: Certification[] = [
-  {
-    id: "seg-info",
-    fileName:
-      "introduction-to-cybersecurity-certificate-batistazul37-gmail-com-2de89d68-b231-4e42-9f11-ac4e35d7c1f2.pdf",
-    title: "Seguranca da Informacao",
-    issuer: "Cisco Networking Academy",
-    track: "Ciberseguranca",
-    level: "Fundamentos",
-    year: "2026",
-    pillar: "seguranca",
-  },
-  {
-    id: "incidente",
-    fileName: "ethical-hacker-certificate-batistazul37-gmail-com-c040a88c-f700-4ad6-b8f6-4d9349abbaa5.pdf",
-    title: "Resposta a Incidentes",
-    issuer: "Cisco Networking Academy",
-    track: "Ciberseguranca",
-    level: "Intermediario",
-    year: "2026",
-    pillar: "seguranca",
-  },
-  {
-    id: "apis-rest",
-    fileName: "certificate-batistazul37-gmail-com-7730c2f3-935b-4fff-b24f-e52d5bf9270b.pdf",
-    title: "Desenvolvimento de APIs REST",
-    issuer: "Node.js",
-    track: "Back-end",
-    level: "Intermediario",
-    year: "2026",
-    pillar: "backend",
-  },
-  {
-    id: "react-ts",
-    fileName: "fron-end-componentizado.pdf",
-    title: "React + TypeScript",
-    issuer: "Aplicacoes modernas",
-    track: "Front-end",
-    level: "Intermediario",
-    year: "2026",
-    pillar: "frontend",
-  },
   {
     id: "aws-arch",
     fileName: "aws-academy-graduate-cloud-architecting-training-badge-badge20260327-31-r88ty9.pdf",
     title: "AWS Cloud Architecting",
     issuer: "AWS Academy",
     track: "Cloud",
-    level: "Intermediario",
-    year: "2026",
+    level: "Intermediário",
+    year: "2025",
     pillar: "cloud",
+  },
+  {
+    id: "incidente",
+    fileName: "ethical-hacker-certificate-batistazul37-gmail-com-c040a88c-f700-4ad6-b8f6-4d9349abbaa5.pdf",
+    title: "Ethical Hacking",
+    issuer: "Cisco Networking Academy",
+    track: "Cibersegurança",
+    level: "Intermediário",
+    year: "2025",
+    pillar: "segurança",
+  },
+  {
+    id: "apis-rest",
+    fileName: "certificate-batistazul37-gmail-com-7730c2f3-935b-4fff-b24f-e52d5bf9270b.pdf",
+    title: "Fundamentos de Cibersegurança",
+    issuer: "Cisco Networking Academy",
+    track: "Cibersegurança",
+    level: "Intermediário",
+    year: "2025",
+    pillar: "segurança",
+  },
+  {
+    id: "react-ts",
+    fileName: "fron-end-componentizado.pdf",
+    title: "React + TypeScript",
+    issuer: "Aplicações modernas",
+    track: "Front-end",
+    level: "Intermediário",
+    year: "2025",
+    pillar: "frontend",
+  },
+  {
+    id: "seg-info",
+    fileName:
+      "introduction-to-cybersecurity-certificate-batistazul37-gmail-com-2de89d68-b231-4e42-9f11-ac4e35d7c1f2.pdf",
+    title: "Segurança da Informação",
+    issuer: "Cisco Networking Academy",
+    track: "Cibersegurança",
+    level: "Fundamentos",
+    year: "2025",
+    pillar: "segurança",
   },
   {
     id: "networking-basics",
@@ -80,7 +78,7 @@ const certifications: Certification[] = [
     issuer: "Cisco Networking Academy",
     track: "Redes",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "fundamentos",
   },
   {
@@ -90,7 +88,7 @@ const certifications: Certification[] = [
     issuer: "DIO",
     track: "Front-end",
     level: "Base",
-    year: "2026",
+    year: "2025",
     pillar: "frontend",
   },
   {
@@ -100,7 +98,7 @@ const certifications: Certification[] = [
     issuer: "DIO",
     track: "TypeScript",
     level: "Base",
-    year: "2026",
+    year: "2025",
     pillar: "frontend",
   },
   {
@@ -110,27 +108,27 @@ const certifications: Certification[] = [
     issuer: "DIO",
     track: "Java",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "fundamentos",
   },
   {
     id: "java-inicio",
     fileName: "certificado-inicio-java.pdf",
-    title: "Certificado Inicio Java",
+    title: "Certificado Início Java",
     issuer: "DIO",
     track: "Java",
     level: "Base",
-    year: "2026",
+    year: "2025",
     pillar: "fundamentos",
   },
   {
     id: "csharp-org",
     fileName: "conhecendo-a-organizacao-de-um-programa-c-sharp.pdf",
-    title: "Organizacao de um Programa C#",
+    title: "Organização de um Programa C#",
     issuer: "DIO",
     track: "C#",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "backend",
   },
   {
@@ -140,17 +138,17 @@ const certifications: Certification[] = [
     issuer: "DIO",
     track: "C#",
     level: "Base",
-    year: "2026",
+    year: "2025",
     pillar: "backend",
   },
   {
     id: "client-server",
     fileName: "entendendo-comunicacao-client-x-server.pdf",
-    title: "Comunicacao Client x Server",
+    title: "Comunicação Client x Server",
     issuer: "DIO",
     track: "Arquitetura Web",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "backend",
   },
   {
@@ -160,37 +158,37 @@ const certifications: Certification[] = [
     issuer: "DIO",
     track: "Front-end",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "frontend",
   },
   {
     id: "dotnet-intro",
     fileName: "introducao-ao-net.pdf",
-    title: "Introducao ao .NET",
+    title: "Introdução ao .NET",
     issuer: "DIO",
     track: ".NET",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "backend",
   },
   {
     id: "ides",
     fileName: "introducao-as-ides.pdf",
-    title: "Introducao as IDEs",
+    title: "Introdução às IDEs",
     issuer: "DIO",
     track: "Ferramentas",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "fundamentos",
   },
   {
     id: "operadores-aritmeticos",
     fileName: "operadores-aritmeticos-em-c-sharp.pdf",
-    title: "Operadores Aritmeticos em C#",
+    title: "Operadores Aritméticos em C#",
     issuer: "DIO",
     track: "C#",
     level: "Base",
-    year: "2026",
+    year: "2025",
     pillar: "backend",
   },
   {
@@ -200,7 +198,7 @@ const certifications: Certification[] = [
     issuer: "DIO",
     track: "C#",
     level: "Fundamentos",
-    year: "2026",
+    year: "2025",
     pillar: "backend",
   },
   {
@@ -209,36 +207,42 @@ const certifications: Certification[] = [
     title: "Tipos de Operadores em C#",
     issuer: "DIO",
     track: "C#",
-    level: "Intermediario",
-    year: "2026",
+    level: "Intermediário",
+    year: "2025",
     pillar: "backend",
   },
   {
     id: "git-github",
     fileName: "versionamento-de-codigo-com-git-e-github.pdf",
-    title: "Versionamento de Codigo com Git e GitHub",
+    title: "Versionamento de Código com Git e GitHub",
     issuer: "DIO",
     track: "Git e GitHub",
     level: "Base",
-    year: "2026",
+    year: "2025",
     pillar: "fundamentos",
   },
 ];
 
-const featuredOrder = ["seg-info", "incidente", "apis-rest", "react-ts"] as const;
+const featuredOrder = ["aws-arch", "incidente", "apis-rest", "react-ts"] as const;
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const levelStyles = {
+  Fundamentos: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+  Base: "bg-sky-500/10 text-sky-300 border-sky-500/30",
+  Intermediário: "bg-violet-500/10 text-violet-300 border-violet-500/30",
+  Avançado: "bg-amber-500/10 text-amber-300 border-amber-500/30",
+} as const;
 
-const CertificationCard = ({ cert, rank }: { cert: Certification; rank?: number }) => {
-  const basePath = import.meta.env.BASE_URL.endsWith("/")
-    ? import.meta.env.BASE_URL
-    : `${import.meta.env.BASE_URL}/`;
+const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: number }) => {
   const certificatePath = `${basePath}Certificados/${encodeURIComponent(cert.fileName)}`;
+  const detailsPath = `/certificacoes/${cert.id}`;
+  const downloadPath = `/certificacoes/${cert.id}/download`;
+  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false);
 
-  const levelStyles = {
-    Fundamentos: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-    Base: "bg-sky-500/10 text-sky-300 border-sky-500/30",
-    Intermediario: "bg-violet-500/10 text-violet-300 border-violet-500/30",
-    Avancado: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-  } as const;
+  useEffect(() => {
+    setIsPreviewLoaded(false);
+  }, [certificatePath]);
 
   return (
     <article className="group premium-card p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -254,15 +258,28 @@ const CertificationCard = ({ cert, rank }: { cert: Certification; rank?: number 
           </span>
         )}
 
+        {!isPreviewLoaded && (
+          <div className="absolute inset-0 z-[1] overflow-hidden bg-gradient-to-br from-card via-secondary/30 to-card">
+            <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-primary/15 blur-2xl animate-pulse" />
+            <div className="absolute -bottom-12 -right-12 h-40 w-40 rounded-full bg-primary/10 blur-3xl animate-pulse" />
+            <div className="relative h-full w-full flex flex-col items-center justify-center gap-2 text-muted-foreground/90">
+              <FileText className="h-6 w-6 animate-pulse" />
+              <span className="text-sm">Carregando preview...</span>
+            </div>
+          </div>
+        )}
+
         <object
           data={`${certificatePath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
           type="application/pdf"
-          aria-label={`Pre-visualizacao do certificado ${cert.title}`}
+          aria-label={`Pré-visualização do certificado ${cert.title}`}
+          onLoad={() => setIsPreviewLoaded(true)}
+          onError={() => setIsPreviewLoaded(true)}
           className="h-full w-full pointer-events-none"
         >
           <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-secondary/60 to-card text-muted-foreground">
             <FileText className="h-6 w-6" />
-            <span className="text-sm">Previa indisponivel</span>
+            <span className="text-sm">Prévia indisponível</span>
           </div>
         </object>
 
@@ -292,29 +309,28 @@ const CertificationCard = ({ cert, rank }: { cert: Certification; rank?: number 
 
       <div className="mt-auto flex items-center gap-3">
         <a
-          href={certificatePath}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Visualizar certificado ${cert.title}`}
-          className="inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+          href={detailsPath}
+          aria-label={`Abrir detalhes do certificado ${cert.title}`}
+          className="inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary/20 hover:shadow-[0_8px_22px_-12px_hsl(var(--primary))]"
         >
           <ExternalLink className="h-4 w-4" />
-          Visualizar
+          Ver detalhes
         </a>
 
         <a
-          href={certificatePath}
-          download={cert.fileName}
-          aria-label={`Baixar certificado ${cert.title}`}
-          className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/40 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
+          href={downloadPath}
+          aria-label={`Ir para download do certificado ${cert.title}`}
+          className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card/80 hover:text-foreground hover:shadow-[0_8px_22px_-14px_hsl(var(--foreground)/0.35)]"
         >
           <Download className="h-4 w-4" />
-          Download
+          Ir para download
         </a>
       </div>
     </article>
   );
-};
+});
+
+CertificationCard.displayName = "CertificationCard";
 
 const CertificationsSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -329,9 +345,6 @@ const CertificationsSection = () => {
     return certifications.filter((cert) => !featuredIds.has(cert.id as (typeof featuredOrder)[number]));
   }, []);
 
-  const securityCount = certifications.filter((cert) => cert.pillar === "seguranca").length;
-  const latestYear = certifications.reduce((max, cert) => Math.max(max, Number(cert.year)), 0);
-
   return (
     <section id="certificacoes" className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-mesh-gradient opacity-60 pointer-events-none" />
@@ -341,51 +354,27 @@ const CertificationsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex items-center justify-center gap-4 mb-6 animate-fade-up">
           <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
-          <span className="text-sm font-medium text-primary tracking-widest uppercase">Certificacoes</span>
+          <span className="text-sm font-medium text-primary tracking-widest uppercase">Conhecimentos complementares</span>
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
         </div>
 
         <div className="text-center mb-16">
           <h2 className="font-display text-display-sm md:text-display-md mb-6 animate-fade-up delay-100">
-            ######### <span className="text-gradient"> ############# </span>
+            Certificações e <span className="text-gradient">Evolução Técnica</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-light animate-fade-up delay-200 leading-relaxed">
-            #### sessão em manutenção #####
+            Trilhas concluídas em desenvolvimento, arquitetura, cloud e segurança, com foco em aplicação prática.
           </p>
         </div>
 
-        <div className="premium-card p-6 md:p-8 mb-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-border/80 bg-card/40 p-5 transition-colors hover:border-primary/25">
-              <div className="flex items-center gap-2 text-primary mb-2">
-                <FileText className="h-4 w-4" />
-                <span className="text-xs uppercase tracking-wider">Total</span>
-              </div>
-              <p className="font-display text-3xl">{certifications.length}</p>
-              <p className="text-sm text-muted-foreground">Certificados mapeados</p>
-            </div>
-
-            <div className="rounded-2xl border border-border/80 bg-card/40 p-5 transition-colors hover:border-primary/25">
-              <div className="flex items-center gap-2 text-primary mb-2">
-                <ShieldCheck className="h-4 w-4" />
-                <span className="text-xs uppercase tracking-wider">Seguranca</span>
-              </div>
-              <p className="font-display text-3xl">{securityCount}</p>
-              <p className="text-sm text-muted-foreground">Certificados focados em seguranca</p>
-            </div>
-
-            <div className="rounded-2xl border border-border/80 bg-card/40 p-5 transition-colors hover:border-primary/25">
-              <div className="flex items-center gap-2 text-primary mb-2">
-                <Sparkles className="h-4 w-4" />
-                <span className="text-xs uppercase tracking-wider">Atualizacao</span>
-              </div>
-              <p className="font-display text-3xl">{latestYear}</p>
-              <p className="text-sm text-muted-foreground">Ano mais recente do acervo</p>
-            </div>
-          </div>
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <p className="text-sm md:text-base text-muted-foreground">Destaques da trilha principal</p>
+          <p className="text-xs md:text-sm uppercase tracking-wider text-primary/90">
+            {certifications.length} certificados no acervo
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {featuredCertifications.map((cert, index) => (
             <CertificationCard key={cert.id} cert={cert} rank={index + 1} />
           ))}
@@ -397,10 +386,10 @@ const CertificationsSection = () => {
             onClick={() => setIsExpanded((prev) => !prev)}
             aria-expanded={isExpanded}
             aria-controls="certifications-more"
-            aria-label={isExpanded ? "Ocultar certificacoes complementares" : "Mostrar certificacoes complementares"}
+            aria-label={isExpanded ? "Ocultar certificações complementares" : "Mostrar certificações complementares"}
             className="group inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-5 py-3 text-sm md:text-base font-semibold text-primary hover:bg-primary/20 transition-all"
           >
-            {isExpanded ? "Ocultar certificacoes complementares" : `Ver mais ${otherCertifications.length} certificacoes`}
+            {isExpanded ? "Ocultar certificações complementares" : `Ver mais ${otherCertifications.length} certificações`}
             {isExpanded ? (
               <ChevronUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
             ) : (
@@ -410,10 +399,8 @@ const CertificationsSection = () => {
         </div>
 
         {isExpanded && (
-          <div
-            id="certifications-more"
-            className="animate-fade-up"
-          >
+          <div id="certifications-more" className="animate-fade-up">
+            <p className="text-sm md:text-base text-muted-foreground mb-5 text-center">Certificações complementares</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-2">
               {otherCertifications.map((cert) => (
                 <CertificationCard key={cert.id} cert={cert} />

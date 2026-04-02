@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Certifications section", () => {
-  test("expands hidden cards and validates visualize/download buttons", async ({ page }) => {
+  test("expands hidden cards and validates details/download route placeholders", async ({ page }) => {
     await page.goto("/");
 
     const section = page.locator("#certificacoes");
@@ -21,25 +21,17 @@ test.describe("Certifications section", () => {
 
     await expect(section.getByText("AWS Cloud Architecting")).toBeVisible();
 
-    const visualizeLink = section.getByRole("link", { name: "Visualizar certificado Seguranca da Informacao" });
-    await expect(visualizeLink).toBeVisible();
-    await expect(visualizeLink).toHaveAttribute("href", /\/Certificados\//);
+    const detailsLink = section.getByRole("link", { name: "Abrir detalhes do certificado Seguranca da Informacao" });
+    await expect(detailsLink).toBeVisible();
+    await expect(detailsLink).toHaveAttribute("href", "/certificacoes/seg-info");
 
-    const visualizeHref = await visualizeLink.getAttribute("href");
-    expect(visualizeHref).toBeTruthy();
-    const visualizeUrl = new URL(visualizeHref!, page.url()).toString();
-    const visualizeResponse = await page.request.get(visualizeUrl);
-    expect(visualizeResponse.ok()).toBeTruthy();
-    expect(visualizeUrl).toMatch(/\/Certificados\/.*\.pdf/i);
-
-    const downloadLink = section.getByRole("link", { name: "Baixar certificado Seguranca da Informacao" });
+    const downloadLink = section.getByRole("link", { name: "Ir para download do certificado Seguranca da Informacao" });
     await expect(downloadLink).toBeVisible();
-    await expect(downloadLink).toHaveAttribute("download", /.*\.pdf/i);
+    await expect(downloadLink).toHaveAttribute("href", "/certificacoes/seg-info/download");
+
     const downloadHref = await downloadLink.getAttribute("href");
     expect(downloadHref).toBeTruthy();
-    const downloadUrl = new URL(downloadHref!, page.url()).toString();
-    const downloadResponse = await page.request.get(downloadUrl);
-    expect(downloadResponse.ok()).toBeTruthy();
-    expect(downloadUrl).toMatch(/\/Certificados\/.*\.pdf/i);
+    const downloadUrl = new URL(downloadHref!, page.url()).pathname;
+    expect(downloadUrl).toBe("/certificacoes/seg-info/download");
   });
 });
