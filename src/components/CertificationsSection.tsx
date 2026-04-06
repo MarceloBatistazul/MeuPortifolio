@@ -190,16 +190,7 @@ const certifications: Certification[] = [
     year: "2025",
     pillar: "backend",
   },
-  {
-    id: "sintaxe-csharp",
-    fileName: "sitaxe-de-c-sharp.pdf",
-    title: "Sintaxe de C#",
-    issuer: "DIO",
-    track: "C#",
-    level: "Fundamentos",
-    year: "2025",
-    pillar: "backend",
-  },
+  
   {
     id: "tipos-operadores",
     fileName: "tipos-de-operadores-em-c-sharp.pdf",
@@ -243,6 +234,24 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
   const [mobileThumbnailSrc, setMobileThumbnailSrc] = useState<string | null>(null);
   const previewView = isMobilePreview ? "FitV" : "FitH";
   const shouldUseCanvasMobilePreview = isMobilePreview;
+  const mobileCoverFallback = (
+    <div className="h-full w-full bg-gradient-to-br from-primary/20 via-card to-card p-4 flex flex-col justify-between">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-[0.22em] text-primary/90 font-semibold">Certificado</span>
+        <Award className="h-4 w-4 text-primary/80" />
+      </div>
+
+      <div className="space-y-2">
+        <h4 className="text-sm font-semibold leading-snug text-foreground line-clamp-3">{cert.title}</h4>
+        <p className="text-xs text-muted-foreground line-clamp-2">{cert.issuer}</p>
+      </div>
+
+      <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+        <span>{cert.track}</span>
+        <span>{cert.year}</span>
+      </div>
+    </div>
+  );
 
   useEffect(() => {
     setIsPreviewLoaded(false);
@@ -260,9 +269,19 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
     };
 
     handleMediaChange(mediaQuery);
-    mediaQuery.addEventListener("change", handleMediaChange);
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleMediaChange);
+    } else {
+      mediaQuery.addListener(handleMediaChange);
+    }
 
-    return () => mediaQuery.removeEventListener("change", handleMediaChange);
+    return () => {
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handleMediaChange);
+      } else {
+        mediaQuery.removeListener(handleMediaChange);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -277,7 +296,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
         const loadingTask = pdfjs.getDocument({
           url: certificatePath,
           disableWorker: true,
-        });
+        } as unknown);
         pdfCleanup = () => loadingTask.destroy();
 
         const pdf = await loadingTask.promise;
@@ -361,6 +380,8 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
               className="h-full w-full object-contain bg-card/70"
               loading="lazy"
             />
+          ) : isPreviewError ? (
+            mobileCoverFallback
           ) : (
             <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-secondary/60 to-card text-center px-4">
               <span className="text-sm font-medium text-foreground">Gerando prévia do certificado</span>
@@ -459,13 +480,21 @@ const CertificationsSection = () => {
 
   const featuredCertifications = useMemo(() => {
     const map = new Map(certifications.map((cert) => [cert.id, cert] as const));
-    return featuredOrder.map((id) => map.get(id)).filter((cert): cert is Certification => Boolean(cert));
+    const orderedFeatured = featuredOrder
+      .map((id) => map.get(id))
+      .filter((cert): cert is Certification => Boolean(cert));
+
+    if (orderedFeatured.length >= 4) return orderedFeatured.slice(0, 4);
+
+    const featuredIds = new Set(orderedFeatured.map((cert) => cert.id));
+    const fallback = certifications.filter((cert) => !featuredIds.has(cert.id)).slice(0, 4 - orderedFeatured.length);
+    return [...orderedFeatured, ...fallback];
   }, []);
 
   const otherCertifications = useMemo(() => {
-    const featuredIds = new Set(featuredOrder);
-    return certifications.filter((cert) => !featuredIds.has(cert.id as (typeof featuredOrder)[number]));
-  }, []);
+    const featuredIds = new Set(featuredCertifications.map((cert) => cert.id));
+    return certifications.filter((cert) => !featuredIds.has(cert.id));
+  }, [featuredCertifications]);
 
   return (
     <section id="certificacoes" className="py-32 relative overflow-hidden">
