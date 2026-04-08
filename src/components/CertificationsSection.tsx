@@ -316,6 +316,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
         await page.render({
           canvasContext: context,
           viewport,
+          canvas,
         }).promise;
 
         const thumbnailDataUrl = canvas.toDataURL("image/webp", 0.82);

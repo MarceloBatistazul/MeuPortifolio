@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: "/doc/CV Marcelo.pdf", label: "CV", isDownload: true },
+    { href: "/doc/CV-Marcelo.pdf", label: "CV", isDownload: true },
     { href: "#sobre", label: "Sobre" },
     { href: "#stack", label: "Stack" },
     { href: "#projetos", label: "Projetos" },
