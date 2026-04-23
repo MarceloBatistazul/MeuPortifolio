@@ -43,7 +43,7 @@ const HeroSection = () => {
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
               <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary border border-primary/30 rounded-full bg-primary/5 backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                Full Stack Software Developer
+                Software Engineer
               </span>
 
               <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-muted-foreground border border-border rounded-full bg-card/30">
@@ -57,7 +57,7 @@ const HeroSection = () => {
               <br />
               <span className="text-gradient">Software</span>
               <br />
-              Developer
+              Engineer
             </h1>
 
             <p className="animate-fade-up delay-200 text-lg md:text-xl text-muted-foreground max-w-lg lg:max-w-xl mx-auto lg:mx-0 mb-6 leading-relaxed font-light">
@@ -93,8 +93,8 @@ const HeroSection = () => {
               </div>
 
               <div>
-                <p className="text-2xl md:text-3xl font-semibold">10+</p>
-                <p className="text-sm text-muted-foreground">usuários ativos</p>
+                <p className="text-2xl md:text-3xl font-semibold">100%</p>
+                <p className="text-sm text-muted-foreground">foco em performance</p>
               </div>
 
               <div>

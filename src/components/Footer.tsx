@@ -26,7 +26,7 @@ const Footer = () => {
               <div className="flex items-center justify-center gap-2 flex-wrap">
                 <span className="font-display text-2xl font-bold text-gradient">Marcelo Batista</span>
                 <span className="px-2 py-1 text-xs rounded-full border border-primary/50 text-primary font-medium">
-                  Full Stack Software Developer
+                  Full Stack Software Engineer
                 </span>
               </div>
 
