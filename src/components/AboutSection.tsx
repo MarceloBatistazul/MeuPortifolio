@@ -48,11 +48,11 @@ const AboutSection = () => {
 
         <div className="max-w-4xl mx-auto text-center mb-20">
           <h2 className="font-display text-display-sm md:text-display-md mb-8 animate-fade-up delay-100">
-            Desenvolvimento full stack com foco em <span className="text-gradient">arquitetura</span> e{" "}
+            Construo aplicações full stack com <span className="text-gradient">arquitetura sólida</span> e{" "}
             <span className="text-gradient">impacto real</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light animate-fade-up delay-200">
-            Sou Desenvolvedor Full Stack com experiência na construção de aplicações web completas, atuando do
+            Desenvolvedor Full Stack com experiência na construção de aplicações web completas, atuando do
             levantamento de requisitos à implementação e manutenção. No back-end, trabalho com C#/.NET e Node.js
             (NestJS), criando APIs seguras e escaláveis com boas práticas de arquitetura e DDD. No front-end,
             desenvolvo interfaces com React e TypeScript priorizando performance, usabilidade e experiência do

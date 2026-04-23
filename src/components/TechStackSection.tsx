@@ -1,52 +1,58 @@
-﻿const TechStackSection = () => {
+const TechStackSection = () => {
   const techCategories = [
     {
       title: "Front-end",
       color: "from-blue-500/20 to-cyan-500/10",
+      description: "Transformo requisitos em experiencias claras, modernas e confiaveis para o usuario final.",
       technologies: [
-        { name: "React", level: 88 },
-        { name: "TypeScript", level: 85 },
-        { name: "JavaScript", level: 87 },
-        { name: "Angular", level: 68 },
-        { name: "Tailwind CSS", level: 83 },
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Angular",
+        "Tailwind CSS",
       ],
     },
     {
       title: "Back-end",
       color: "from-green-500/20 to-emerald-500/10",
+      description: "Estruturo APIs e regras de negocio com foco em performance, seguranca e evolucao continua.",
       technologies: [
-        { name: "C#", level: 80 },
-        { name: ".NET / ASP.NET Core", level: 80 },
-        { name: "Node.js", level: 86 },
-        { name: "NestJS", level: 84 },
-        { name: "Express", level: 83 },
+        "C#",
+        ".NET / ASP.NET Core",
+        "Node.js",
+        "NestJS",
+        "Express",
       ],
     },
     {
       title: "Banco de Dados",
       color: "from-orange-500/20 to-amber-500/10",
+      description: "Modelo dados para sustentar produtos estaveis, com consultas eficientes e manutencao simples.",
       technologies: [
-        { name: "MySQL", level: 85 },
-        { name: "PostgreSQL", level: 80 },
-        { name: "MongoDB", level: 82 },
-       // { name: "Prisma ORM", level: 76 },
-        //{ name: "Entity Framework Core", level: 80 },
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Supabase",
+        // "Prisma ORM",
+        // "Entity Framework Core",
       ],
     },
     {
       title: "Arquitetura e Ferramentas",
       color: "from-purple-500/20 to-pink-500/10",
+      description: "Aplico boas praticas para acelerar entregas, elevar qualidade e reduzir risco em producao.",
       technologies: [
-        { name: "DDD", level: 76 },
-        { name: "REST APIs", level: 88 },
-        { name: "JWT / OAuth2", level: 84 },
-        { name: "Jest", level: 78 },
-        { name: "Testing (Unit & Integration)", level: 76 },
-        { name: "Git / GitHub", level: 90 },
-        { name: "Docker", level: 72 },
-        { name: "Swagger", level: 82 },
-        { name: "Scrum", level: 80 },
-        { name: "AWS", level: 64 },
+        "DDD",
+        "REST APIs",
+        "JWT / OAuth2",
+        "Jest",
+        "Testing (Unit & Integration)",
+        "Git / GitHub",
+        "Docker",
+        "Swagger",
+        "Scrum",
+        "AWS",
+        "CI/CD",
       ],
     },
   ];
@@ -79,7 +85,7 @@
             Stack e <span className="text-gradient">Ferramentas</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light animate-fade-up delay-200">
-            Tecnologias aplicadas para construir produtos web completos, do front-end ao back-end.
+            Stack aplicada em projetos reais, com foco em produto, colaboracao e entrega consistente de valor.
           </p>
         </div>
 
@@ -94,35 +100,35 @@
                 className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${category.color} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
               />
 
-              <h3 className="relative font-display text-xl font-semibold mb-8 flex items-center gap-3">
+              <h3 className="relative font-display text-xl font-semibold mb-3 flex items-center gap-3">
                 <span className="w-3 h-3 rounded-full bg-gradient-to-br from-primary to-primary/50" />
                 {category.title}
               </h3>
 
-              <div className="relative space-y-6">
-                {category.technologies.map((tech) => (
-                  <div key={tech.name} className="group/item">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium group-hover/item:text-primary transition-colors duration-300">
-                        {tech.name}
+              <p className="relative text-sm text-muted-foreground mb-6">{category.description}</p>
+
+              <ul className="relative flex flex-wrap gap-2.5">
+                {category.technologies.map((tech, techIndex) => (
+                  <li
+                    key={tech}
+                    className="group/item rounded-full border border-border/70 bg-secondary/25 px-4 py-2.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                    style={{ animationDelay: `${techIndex * 45}ms` }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary/70 group-hover/item:bg-primary transition-colors duration-300" />
+                      <span className="text-sm font-medium leading-tight text-foreground/90 group-hover/item:text-primary transition-colors duration-300">
+                        {tech}
                       </span>
-                      <span className="text-sm font-mono text-muted-foreground">{tech.level}%</span>
                     </div>
-                    <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-primary via-primary to-primary/60 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${tech.level}%` }}
-                      />
-                    </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
 
         <div className="text-center animate-fade-up delay-600">
-          <p className="text-sm text-muted-foreground mb-6 font-medium uppercase tracking-widest">Competências complementares</p>
+          <p className="text-sm text-muted-foreground mb-6 font-medium uppercase tracking-widest">Competencias complementares</p>
           <div className="flex flex-wrap justify-center gap-3">
             {additionalSkills.map((skill, index) => (
               <span
