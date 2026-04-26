@@ -1,7 +1,49 @@
 ﻿import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import type { SiteLanguage } from "@/pages/Index";
 
-const HeroSection = () => {
+type HeroSectionProps = {
+  language: SiteLanguage;
+};
+
+const HeroSection = ({ language }: HeroSectionProps) => {
+  const content =
+    language === "pt"
+      ? {
+          availability: "Disponível para projetos",
+          titleLine1: "Full Stack",
+          titleAccent: "Software",
+          titleLine3: "Engineer",
+          description:
+            "Engenheiro de software com 2+ anos construindo produtos web para operações comerciais e internas. Atuo na entrega end-to-end, da definição de requisitos ao deploy, com foco em APIs robustas, arquitetura sustentável e melhoria de fluxo para o negócio.",
+          chips: ["Entrega ponta a ponta", "Arquitetura orientada a domínio", "APIs seguras", "Performance", "Manutenibilidade"],
+          stats: [
+            { value: "2+", label: "anos em projetos reais" },
+            { value: "5+", label: "sistemas entregues" },
+            { value: "100%", label: "foco em valor de produto" },
+            { value: "B2B", label: "contexto principal" },
+          ],
+          viewProjects: "Ver Projetos",
+          contact: "Entrar em Contato",
+        }
+      : {
+          availability: "Available for projects",
+          titleLine1: "Full Stack",
+          titleAccent: "Software",
+          titleLine3: "Engineer",
+          description:
+            "Software engineer with 2+ years building web products for operational and commercial teams. I work end-to-end, from requirements to deployment, focusing on robust APIs, sustainable architecture, and measurable workflow improvements.",
+          chips: ["End-to-end delivery", "Domain-oriented architecture", "Secure APIs", "Performance", "Maintainability"],
+          stats: [
+            { value: "2+", label: "years in real projects" },
+            { value: "5+", label: "systems delivered" },
+            { value: "100%", label: "product-value driven" },
+            { value: "B2B", label: "primary context" },
+          ],
+          viewProjects: "View Projects",
+          contact: "Get in Touch",
+        };
+
   return (
     <section className="relative min-h-[100svh] pt-28 lg:pt-32 flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-20" />
@@ -17,7 +59,7 @@ const HeroSection = () => {
               <div className="absolute -inset-4 rounded-full border border-primary/20 animate-pulse-glow" />
               <div className="absolute -inset-8 rounded-full border border-primary/10" />
               <div className="absolute -inset-12 rounded-full border border-primary/5" />
-
+            
               <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden avatar-glow-lg group-hover:scale-105 transition-transform duration-700">
                 <img
                   src="/img/FotoPerfilDev.webp"
@@ -34,7 +76,7 @@ const HeroSection = () => {
 
               <div className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-foreground/80">Disponível para projetos</span>
+                <span className="text-foreground/80">{content.availability}</span>
               </div>
             </div>
           </div>
@@ -53,66 +95,45 @@ const HeroSection = () => {
             </div>
 
             <h1 className="animate-fade-up delay-100 font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6">
-              Full Stack
+              {content.titleLine1}
               <br />
-              <span className="text-gradient">Software</span>
+              <span className="text-gradient">{content.titleAccent}</span>
               <br />
-              Engineer
+              {content.titleLine3}
             </h1>
 
             <p className="animate-fade-up delay-200 text-lg md:text-xl text-muted-foreground max-w-lg lg:max-w-xl mx-auto lg:mx-0 mb-6 leading-relaxed font-light">
-              Desenvolvedor com foco em <span className="text-foreground font-medium">C#/.NET</span>,{" "}
-              <span className="text-foreground font-medium">Node.js (NestJS)</span> e{" "}
-              <span className="text-foreground font-medium">React + TypeScript</span>. Projeto e implemento
-              sistemas web escaláveis, seguros e orientados a resultados.
+              {content.description}
             </p>
 
             <div className="animate-fade-up delay-250 flex flex-wrap justify-center lg:justify-start gap-2 text-sm text-muted-foreground mb-8">
-              <span>React</span>
-              <span>•</span>
-              <span>TypeScript</span>
-              <span>•</span>
-              <span>C#/.NET</span>
-              <span>•</span>
-              <span>Node.js</span>
-              <span>•</span>
-              <span>NestJS</span>
-              <span>•</span>
-              <span>MySQL</span>
+              {content.chips.map((chip, index) => (
+                <span key={chip}>
+                  {chip}
+                  {index < content.chips.length - 1 ? " • " : ""}
+                </span>
+              ))}
             </div>
 
-            <div className="animate-fade-up delay-300 flex gap-10 justify-center lg:justify-start mb-10">
-              <div>
-                <p className="text-2xl md:text-3xl font-semibold">2+</p>
-                <p className="text-sm text-muted-foreground">anos</p>
-              </div>
-
-              <div>
-                <p className="text-2xl md:text-3xl font-semibold">5+</p>
-                <p className="text-sm text-muted-foreground">projetos</p>
-              </div>
-
-              <div>
-                <p className="text-2xl md:text-3xl font-semibold">100%</p>
-                <p className="text-sm text-muted-foreground">foco em performance</p>
-              </div>
-
-              <div>
-                <p className="text-2xl md:text-3xl font-semibold">14+</p>
-                <p className="text-sm text-muted-foreground">tecnologias</p>
-              </div>
+            <div className="animate-fade-up delay-300 flex gap-10 justify-center lg:justify-start mb-10 flex-wrap">
+              {content.stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl md:text-3xl font-semibold">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
             </div>
 
             <div className="animate-fade-up delay-400 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
               <Button variant="hero" size="xl" className="group" asChild>
                 <a href="#projetos">
-                  Ver Projetos
+                  {content.viewProjects}
                   <ArrowDown className="w-4 h-4 ml-2 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                 </a>
               </Button>
 
               <Button variant="heroOutline" size="xl" asChild>
-                <a href="#contato">Entrar em Contato</a>
+                <a href="#contato">{content.contact}</a>
               </Button>
             </div>
 
@@ -142,3 +163,5 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+

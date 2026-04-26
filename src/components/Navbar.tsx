@@ -1,8 +1,14 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { SiteLanguage } from "@/pages/Index";
 
-const Navbar = () => {
+type NavbarProps = {
+  language: SiteLanguage;
+  onLanguageChange: (language: SiteLanguage) => void;
+};
+
+const Navbar = ({ language, onLanguageChange }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -16,7 +22,7 @@ const Navbar = () => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) { 
+          if (rect.top <= 100) {
             setActiveSection(section);
             break;
           }
@@ -28,15 +34,26 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "/doc/CV-Marcelo.pdf", label: "CV", isDownload: true },
-    { href: "#sobre", label: "Sobre" },
-    { href: "#stack", label: "Stack" },
-    { href: "#projetos", label: "Projetos" },
-    { href: "#formacao", label: "Formação" },
-    { href: "#certificacoes", label: "Certificações" },
-    { href: "#diferenciais", label: "Diferenciais" },
-  ];
+  const navLinks =
+    language === "pt"
+      ? [
+          { href: "/doc/CV-Marcelo.pdf", label: "CV", isDownload: true },
+          { href: "#sobre", label: "Sobre" },
+          { href: "#stack", label: "Stack" },
+          { href: "#projetos", label: "Projetos" },
+          { href: "#formacao", label: "Formação" },
+          { href: "#certificacoes", label: "Certificações" },
+          { href: "#diferenciais", label: "Diferenciais" },
+        ]
+      : [
+          { href: "/doc/CV-Marcelo.pdf", label: "Resume", isDownload: true },
+          { href: "#sobre", label: "About" },
+          { href: "#stack", label: "Stack" },
+          { href: "#projetos", label: "Projects" },
+          { href: "#formacao", label: "Education" },
+          { href: "#certificacoes", label: "Certifications" },
+          { href: "#diferenciais", label: "Strengths" },
+        ];
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "py-3 glass-strong" : "py-5 bg-transparent"}`}>
@@ -76,9 +93,17 @@ const Navbar = () => {
             )}
             <div className="ml-4">
               <Button variant="default" size="sm" className="font-medium" asChild>
-                <a href="#contato">Contato</a>
+                <a href="#contato">{language === "pt" ? "Contato" : "Contact"}</a>
               </Button>
             </div>
+            <button
+              type="button"
+              onClick={() => onLanguageChange(language === "pt" ? "en" : "pt")}
+              className="ml-2 px-3 py-2 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+              aria-label={language === "pt" ? "Mudar idioma para inglês" : "Switch language to Portuguese"}
+            >
+              {language === "pt" ? "EN" : "PT"}
+            </button>
           </div>
 
           <button
@@ -129,9 +154,20 @@ const Navbar = () => {
           <div className="pt-4 mt-2 border-t border-border/50">
             <Button variant="default" className="w-full font-medium" asChild>
               <a href="#contato" onClick={() => setIsMobileMenuOpen(false)}>
-                Entrar em Contato
+                {language === "pt" ? "Entrar em Contato" : "Get in Touch"}
               </a>
             </Button>
+            <button
+              type="button"
+              onClick={() => {
+                onLanguageChange(language === "pt" ? "en" : "pt");
+                setIsMobileMenuOpen(false);
+              }}
+              className="mt-3 w-full px-4 py-3 text-sm font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+              aria-label={language === "pt" ? "Mudar idioma para inglês" : "Switch language to Portuguese"}
+            >
+              {language === "pt" ? "Switch to English" : "Mudar para Português"}
+            </button>
           </div>
         </div>
       </div>
@@ -140,3 +176,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+

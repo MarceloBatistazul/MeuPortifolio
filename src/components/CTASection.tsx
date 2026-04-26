@@ -1,7 +1,39 @@
 ﻿import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import type { SiteLanguage } from "@/pages/Index";
 
-const CTASection = () => {
+type CTASectionProps = {
+  language: SiteLanguage;
+};
+
+const CTASection = ({ language }: CTASectionProps) => {
+  const text =
+    language === "pt"
+      ? {
+          badge: "Vamos conversar?",
+          heading1: "Vamos construir uma",
+          heading2: "solução eficiente juntos",
+          paragraph: "Aberto a oportunidades como Desenvolvedor Full Stack em projetos freelancer, colaborações e novas posições no mercado.",
+          contact: "Entrar em Contato",
+          linkedin: "Conectar no LinkedIn",
+          channels: "Canais diretos",
+          emailAria: "Enviar email para Marcelo Batista",
+          linkedinAria: "Abrir perfil do LinkedIn de Marcelo Batista",
+          githubAria: "Abrir GitHub de Marcelo Batista",
+        }
+      : {
+          badge: "Let us talk",
+          heading1: "Let us build an",
+          heading2: "efficient solution together",
+          paragraph: "Open to Full Stack opportunities in freelance projects, product collaborations and new engineering positions.",
+          contact: "Get in Touch",
+          linkedin: "Connect on LinkedIn",
+          channels: "Direct channels",
+          emailAria: "Send email to Marcelo Batista",
+          linkedinAria: "Open Marcelo Batista LinkedIn profile",
+          githubAria: "Open Marcelo Batista GitHub profile",
+        };
+
   return (
     <section id="contato" className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-radial" />
@@ -13,27 +45,26 @@ const CTASection = () => {
           <div className="flex justify-center mb-10 animate-fade-up">
             <div className="flex items-center gap-3 px-5 py-2.5 rounded-full glass">
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-muted-foreground">Vamos conversar?</span>
+              <span className="text-sm font-medium text-muted-foreground">{text.badge}</span>
             </div>
           </div>
 
           <div className="text-center">
             <h2 className="font-display text-display-sm md:text-display-md lg:text-display-lg mb-8 animate-fade-up delay-100">
-              Vamos construir uma
+              {text.heading1}
               <br />
-              <span className="text-gradient">solução eficiente juntos</span>
+              <span className="text-gradient">{text.heading2}</span>
             </h2>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-light leading-relaxed animate-fade-up delay-200">
-              Aberto a oportunidades como Desenvolvedor Full Stack em projetos freelancer, colaborações e novas
-              posições no mercado.
+              {text.paragraph}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
               <Button variant="hero" size="xl" className="group" asChild>
-                <a href="mailto:batistazul37@gmail.com" aria-label="Enviar email para Marcelo Batista">
+                <a href="mailto:batistazul37@gmail.com" aria-label={text.emailAria}>
                   <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Entrar em Contato
+                  {text.contact}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </a>
               </Button>
@@ -42,19 +73,19 @@ const CTASection = () => {
                   href="https://www.linkedin.com/in/marcelo-batista-561871219/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Abrir perfil do LinkedIn de Marcelo Batista"
+                  aria-label={text.linkedinAria}
                 >
-                  Conectar no LinkedIn
+                  {text.linkedin}
                 </a>
               </Button>
             </div>
 
             <div className="mt-16 pt-10 border-t border-border/50 animate-fade-up delay-400">
-              <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest font-medium">Canais diretos</p>
+              <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest font-medium">{text.channels}</p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 text-sm">
                 <a
                   href="mailto:batistazul37@gmail.com"
-                  aria-label="Enviar email para Marcelo Batista"
+                  aria-label={text.emailAria}
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
                   batistazul37@gmail.com
@@ -64,7 +95,7 @@ const CTASection = () => {
                   href="https://github.com/MarceloBatistazul"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Abrir GitHub de Marcelo Batista"
+                  aria-label={text.githubAria}
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
                   github.com/MarceloBatistazul
@@ -74,7 +105,7 @@ const CTASection = () => {
                   href="https://www.linkedin.com/in/marcelo-batista-561871219/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Abrir LinkedIn de Marcelo Batista"
+                  aria-label={text.linkedinAria}
                   className="text-foreground hover:text-primary transition-colors duration-300 link-underline font-medium"
                 >
                   linkedin.com/in/marcelo-batista-561871219
@@ -89,3 +120,4 @@ const CTASection = () => {
 };
 
 export default CTASection;
+

@@ -1,39 +1,95 @@
 ﻿import { Code2, Lightbulb, Target, Zap, Sparkles } from "lucide-react";
+import type { SiteLanguage } from "@/pages/Index";
 
-const AboutSection = () => {
-  const highlights = [
-    {
-      icon: Code2,
-      title: "Back-end Estruturado",
-      description: "APIs REST com C#/.NET e NestJS, arquitetura em camadas e organização por domínio.",
-    },
-    {
-      icon: Zap,
-      title: "Performance e Escalabilidade",
-      description: "Soluções preparadas para crescer com foco em desempenho, segurança e manutenção.",
-    },
-    {
-      icon: Target,
-      title: "Foco no Resultado",
-      description: "Implementações alinhadas a metas de negócio, usabilidade e produtividade da operação.",
-    },
-    {
-      icon: Lightbulb,
-      title: "Evolução Contínua",
-      description: "Atualização constante em boas práticas, arquitetura de software e qualidade técnica.",
-    },
-  ];
+type AboutSectionProps = {
+  language: SiteLanguage;
+};
 
-  const stats = [
-    { value: "2+", label: "Ano de experiência", suffix: "" },
-    { value: "5+", label: "Projetos entregues", suffix: "" },
-    { value: "14+", label: "Tecnologias aplicadas", suffix: "" },
-  ];
-
-  const languages = [
-    { name: "Português", level: "Nativo" },
-    { name: "Inglês", level: "Intermediário" },
-  ];
+const AboutSection = ({ language }: AboutSectionProps) => {
+  const content =
+    language === "pt"
+      ? {
+          sectionTitle: "Sobre mim",
+          headingStart: "Construo sistemas full stack com",
+          headingAccent1: "arquitetura de produção",
+          headingEnd: "e impacto operacional",
+          paragraph:
+            "Atuo como Full Stack Developer entregando produtos que resolvem gargalos reais de operação: fluxo comercial, administração interna e escalabilidade de plataforma. Minha abordagem combina descoberta de requisitos com stakeholders, modelagem de regras de negócio e implementação incremental com observabilidade, segurança e manutenção planejada.",
+          highlights: [
+            {
+              icon: Code2,
+              title: "Back-end orientado a domínio",
+              description: "APIs em C#/.NET e NestJS com separação por contexto de negócio, contratos claros e controle de regras críticas.",
+            },
+            {
+              icon: Zap,
+              title: "Performance com previsibilidade",
+              description: "Otimizo consultas, estrutura de dados e fluxo de requisições para manter resposta rápida sob crescimento de uso.",
+            },
+            {
+              icon: Target,
+              title: "Entrega orientada a produto",
+              description: "Priorização por impacto, ciclos curtos de validação e evolução contínua com foco em resultado para o cliente final.",
+            },
+            {
+              icon: Lightbulb,
+              title: "Qualidade de engenharia",
+              description: "Código legivel, padrões consistentes, documentacao objetiva e base preparada para onboarding e manutenção.",
+            },
+          ],
+          stats: [
+            { value: "2+", label: "Anos em projetos com cliente" },
+            { value: "5+", label: "Produtos web em operação" },
+            { value: "E2E", label: "Atuação do requisito ao deploy" },
+          ],
+          languagesTitle: "Idiomas",
+          languages: [
+            { name: "Português", level: "Nativo" },
+            { name: "Inglês", level: "Intermediário" },
+          ],
+          footer: "Compromisso com clareza técnica, ownership e evolução contínua do produto",
+        }
+      : {
+          sectionTitle: "About",
+          headingStart: "I build full stack systems with",
+          headingAccent1: "production-ready architecture",
+          headingEnd: "and operational impact",
+          paragraph:
+            "I work as a Full Stack Developer delivering products that solve real operational bottlenecks: sales flow, internal management and platform scalability. My approach combines stakeholder requirement discovery, business rule modeling, and incremental implementation with observability, security and maintainability.",
+          highlights: [
+            {
+              icon: Code2,
+              title: "Domain-oriented back end",
+              description: "C#/.NET and NestJS APIs structured by business context, with clear contracts and controlled critical rules.",
+            },
+            {
+              icon: Zap,
+              title: "Predictable performance",
+              description: "I optimize queries, data structures and request flow to keep response times stable under growth.",
+            },
+            {
+              icon: Target,
+              title: "Product-driven delivery",
+              description: "Impact-based prioritization, short validation cycles and continuous evolution focused on user outcomes.",
+            },
+            {
+              icon: Lightbulb,
+              title: "Engineering quality",
+              description: "Readable code, consistent standards, objective documentation and maintainable foundations.",
+            },
+          ],
+          stats: [
+            { value: "2+", label: "Years in client-facing projects" },
+            { value: "5+", label: "Web products in production" },
+            { value: "E2E", label: "From requirements to deployment" },
+          ],
+          languagesTitle: "Languages",
+          languages: [
+            { name: "Portuguese", level: "Native" },
+            { name: "English", level: "Intermediate" },
+          ],
+          footer: "Committed to technical clarity, ownership and continuous product evolution",
+        };
 
   return (
     <section id="sobre" className="py-32 relative overflow-hidden">
@@ -42,26 +98,21 @@ const AboutSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex items-center justify-center gap-4 mb-6 animate-fade-up">
           <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
-          <span className="text-sm font-medium text-primary tracking-widest uppercase">Sobre mim</span>
+          <span className="text-sm font-medium text-primary tracking-widest uppercase">{content.sectionTitle}</span>
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
         </div>
 
         <div className="max-w-4xl mx-auto text-center mb-20">
           <h2 className="font-display text-display-sm md:text-display-md mb-8 animate-fade-up delay-100">
-            Construo aplicações full stack com <span className="text-gradient">arquitetura sólida</span> e{" "}
-            <span className="text-gradient">impacto real</span>
+            {content.headingStart} <span className="text-gradient">{content.headingAccent1}</span> {content.headingEnd}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-light animate-fade-up delay-200">
-            Desenvolvedor Full Stack com experiência na construção de aplicações web completas, atuando do
-            levantamento de requisitos à implementação e manutenção. No back-end, trabalho com C#/.NET e Node.js
-            (NestJS), criando APIs seguras e escaláveis com boas práticas de arquitetura e DDD. No front-end,
-            desenvolvo interfaces com React e TypeScript priorizando performance, usabilidade e experiência do
-            usuário.
+            {content.paragraph}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {highlights.map((item, index) => (
+          {content.highlights.map((item, index) => (
             <div
               key={item.title}
               className="group premium-card p-8 animate-fade-up"
@@ -80,11 +131,10 @@ const AboutSection = () => {
 
         <div className="premium-card p-10 md:p-12 animate-fade-up delay-500">
           <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-            {stats.map((stat) => (
+            {content.stats.map((stat) => (
               <div key={stat.label} className="text-center group">
                 <div className="flex items-baseline justify-center gap-1 mb-3">
                   <span className="font-display text-5xl md:text-6xl font-bold text-gradient">{stat.value}</span>
-                  <span className="font-display text-3xl md:text-4xl font-bold text-primary">{stat.suffix}</span>
                 </div>
                 <div className="text-sm text-muted-foreground font-medium tracking-wide uppercase">{stat.label}</div>
               </div>
@@ -93,14 +143,14 @@ const AboutSection = () => {
         </div>
 
         <div className="mt-8 premium-card p-8 animate-fade-up" style={{ animationDelay: "550ms" }}>
-          <p className="text-sm text-muted-foreground mb-4 font-medium uppercase tracking-widest">Idiomas</p>
+          <p className="text-sm text-muted-foreground mb-4 font-medium uppercase tracking-widest">{content.languagesTitle}</p>
           <div className="flex flex-wrap gap-3">
-            {languages.map((language) => (
+            {content.languages.map((languageItem) => (
               <span
-                key={language.name}
+                key={languageItem.name}
                 className="px-4 py-2 text-sm rounded-full border border-border bg-card/30 text-foreground"
               >
-                {language.name} • {language.level}
+                {languageItem.name} • {languageItem.level}
               </span>
             ))}
           </div>
@@ -109,7 +159,7 @@ const AboutSection = () => {
         <div className="flex justify-center mt-16 animate-fade-up delay-600">
           <div className="flex items-center gap-3 text-muted-foreground">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">Compromisso com qualidade, clareza técnica e evolução contínua</span>
+            <span className="text-sm font-medium">{content.footer}</span>
             <Sparkles className="w-4 h-4 text-primary" />
           </div>
         </div>
@@ -119,3 +169,6 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
+
+

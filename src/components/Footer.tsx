@@ -1,6 +1,11 @@
 ﻿import { Github, Linkedin, Mail, Heart, ArrowUp, Globe, Instagram } from "lucide-react";
+import type { SiteLanguage } from "@/pages/Index";
 
-const Footer = () => {
+type FooterProps = {
+  language: SiteLanguage;
+};
+
+const Footer = ({ language }: FooterProps) => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -10,6 +15,23 @@ const Footer = () => {
     { icon: Globe, href: "https://mbcodesolutions.vercel.app/", label: "MB Code Solutions" },
     { icon: Instagram, href: "https://www.instagram.com/mb_code_solutions?igsh=MWFxdmZsM2U0d25xbg==", label: "Instagram MB Code Solutions" },
   ];
+
+  const text =
+    language === "pt"
+      ? {
+          description: "Desenvolvimento de aplicações web completas com foco em arquitetura, segurança, performance e experiência do usuário.",
+          freelance: "Atuação freelancer em sistemas web, APIs REST e integrações para digitalização de processos.",
+          madeWith: "Feito com",
+          andCode: "e muito código",
+          backToTop: "Voltar ao topo",
+        }
+      : {
+          description: "Full stack web application development focused on architecture, security, performance and user experience.",
+          freelance: "Freelance work in web systems, REST APIs and integrations for process digitalization.",
+          madeWith: "Built with",
+          andCode: "and a lot of code",
+          backToTop: "Back to top",
+        };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -30,10 +52,7 @@ const Footer = () => {
                 </span>
               </div>
 
-              <span className="text-sm text-muted-foreground">
-                Desenvolvimento de aplicações web completas com foco em arquitetura, segurança, performance e
-                experiência do usuário.
-              </span>
+              <span className="text-sm text-muted-foreground">{text.description}</span>
             </div>
 
             <div className="space-y-2">
@@ -46,9 +65,7 @@ const Footer = () => {
                 MB Code Solutions
               </a>
 
-              <p className="text-sm text-muted-foreground">
-                Atuação freelancer em sistemas web, APIs REST e integrações para digitalização de processos.
-              </p>
+              <p className="text-sm text-muted-foreground">{text.freelance}</p>
             </div>
 
             <p className="text-sm text-muted-foreground">Ribeirão Preto - SP | batistazul37@gmail.com | +55 16 99742-9305</p>
@@ -73,9 +90,9 @@ const Footer = () => {
 
           <div className="text-center">
             <p className="text-sm text-muted-foreground flex items-center gap-2 justify-center">
-              © {currentYear} • Feito com
+              © {currentYear} • {text.madeWith}
               <Heart className="w-4 h-4 text-primary animate-pulse" />
-              e muito código
+              {text.andCode}
             </p>
           </div>
         </div>
@@ -83,7 +100,7 @@ const Footer = () => {
         <button
           onClick={scrollToTop}
           className="absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-full border border-border bg-card/30 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 hover:-translate-y-[52%] hidden md:flex items-center justify-center"
-          aria-label="Voltar ao topo"
+          aria-label={text.backToTop}
         >
           <ArrowUp className="w-5 h-5" />
         </button>
@@ -93,3 +110,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+

@@ -1,44 +1,101 @@
 ﻿import { CheckCircle2, Cpu, FileCode2, MessageSquare, Rocket, Users } from "lucide-react";
+import type { SiteLanguage } from "@/pages/Index";
 
-const DifferentialsSection = () => {
-  const differentials = [
-    {
-      icon: Rocket,
-      title: "Execução com foco em entrega",
-      description: "Planejamento claro, definição de prioridade e implementação orientada a prazo e qualidade.",
-      number: "01",
-    },
-    {
-      icon: FileCode2,
-      title: "Arquitetura e organização",
-      description: "Aplicação de arquitetura em camadas, modularização por domínio e boas práticas de código.",
-      number: "02",
-    },
-    {
-      icon: Cpu,
-      title: "Capacidade Full Stack",
-      description: "Atuação ponta a ponta em interfaces, APIs, regras de negócio, banco de dados e integrações.",
-      number: "03",
-    },
-    {
-      icon: Users,
-      title: "Visão de produto",
-      description: "Decisões técnicas orientadas ao valor de negócio e à experiência real do usuário final.",
-      number: "04",
-    },
-    {
-      icon: MessageSquare,
-      title: "Comunicação objetiva",
-      description: "Alinhamento contínuo de escopo, status e próximos passos com clareza durante todo o projeto.",
-      number: "05",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Qualidade técnica",
-      description: "Compromisso com segurança, consistência de código, documentação de APIs e manutenção evolutiva.",
-      number: "06",
-    },
-  ];
+type DifferentialsSectionProps = {
+  language: SiteLanguage;
+};
+
+const DifferentialsSection = ({ language }: DifferentialsSectionProps) => {
+  const content =
+    language === "pt"
+      ? {
+          section: "Diferenciais",
+          headingPrefix: "Como eu gero",
+          headingAccent: "resultado",
+          subtitle: "Postura de engenharia aplicada em projetos reais, da descoberta ao suporte pós-entrega.",
+          items: [
+            {
+              icon: Rocket,
+              title: "Execução com ownership",
+              description: "Converto escopo em plano de entrega, assumo responsabilidade por prazo e qualidade técnica.",
+              number: "01",
+            },
+            {
+              icon: FileCode2,
+              title: "Arquitetura para evolução",
+              description: "Estruturo código para suportar novas regras sem retrabalho, com separação clara de responsabilidades.",
+              number: "02",
+            },
+            {
+              icon: Cpu,
+              title: "Profundidade full stack",
+              description: "Atuo em interface, API, banco e infraestrutura de deploy para reduzir gargalos entre camadas.",
+              number: "03",
+            },
+            {
+              icon: Users,
+              title: "Decisão orientada a produto",
+              description: "Priorizo o que gera impacto em operação e usuário final, equilibrando velocidade e sustentabilidade.",
+              number: "04",
+            },
+            {
+              icon: MessageSquare,
+              title: "Comunicação de engenharia",
+              description: "Registro contexto técnico, trade-offs e próximos passos para manter alinhamento com negócio e time.",
+              number: "05",
+            },
+            {
+              icon: CheckCircle2,
+              title: "Qualidade operacional",
+              description: "Aplico critérios de segurança, observabilidade e padrões de manutenção para reduzir risco em produção.",
+              number: "06",
+            },
+          ],
+        }
+      : {
+          section: "Strengths",
+          headingPrefix: "How I drive",
+          headingAccent: "results",
+          subtitle: "Engineering mindset applied to real projects, from discovery to post-delivery support.",
+          items: [
+            {
+              icon: Rocket,
+              title: "Execution with ownership",
+              description: "I translate scope into delivery plans and take responsibility for both timelines and technical quality.",
+              number: "01",
+            },
+            {
+              icon: FileCode2,
+              title: "Architecture for evolution",
+              description: "I structure code to support new business rules without costly rewrites.",
+              number: "02",
+            },
+            {
+              icon: Cpu,
+              title: "Full stack depth",
+              description: "I work across UI, API, data layer and deployment to remove cross-layer bottlenecks.",
+              number: "03",
+            },
+            {
+              icon: Users,
+              title: "Product-oriented decisions",
+              description: "I prioritize what generates operational and user impact while balancing speed and sustainability.",
+              number: "04",
+            },
+            {
+              icon: MessageSquare,
+              title: "Engineering communication",
+              description: "I document context, trade-offs and next steps to keep business and technical stakeholders aligned.",
+              number: "05",
+            },
+            {
+              icon: CheckCircle2,
+              title: "Operational quality",
+              description: "I apply security, observability and maintainability practices to reduce production risk.",
+              number: "06",
+            },
+          ],
+        };
 
   return (
     <section id="diferenciais" className="py-32 relative overflow-hidden">
@@ -48,21 +105,19 @@ const DifferentialsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex items-center justify-center gap-4 mb-6 animate-fade-up">
           <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
-          <span className="text-sm font-medium text-primary tracking-widest uppercase">Diferenciais</span>
+          <span className="text-sm font-medium text-primary tracking-widest uppercase">{content.section}</span>
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
         </div>
 
         <div className="text-center mb-20">
           <h2 className="font-display text-display-sm md:text-display-md mb-6 animate-fade-up delay-100">
-            Como eu gero <span className="text-gradient">resultado</span>
+            {content.headingPrefix} <span className="text-gradient">{content.headingAccent}</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light animate-fade-up delay-200">
-            Uma abordagem técnica e colaborativa para construir produtos confiáveis e prontos para evoluir.
-          </p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light animate-fade-up delay-200">{content.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {differentials.map((item, index) => (
+          {content.items.map((item, index) => (
             <div
               key={item.title}
               className="group premium-card p-8 animate-fade-up"
@@ -91,3 +146,6 @@ const DifferentialsSection = () => {
 };
 
 export default DifferentialsSection;
+
+
+

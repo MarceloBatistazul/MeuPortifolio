@@ -6,6 +6,7 @@ import {
   Download,
   ExternalLink,
 } from "lucide-react";
+import type { SiteLanguage } from "@/pages/Index";
 
 type Certification = {
   id: string;
@@ -111,7 +112,7 @@ const certifications: Certification[] = [
     pillar: "fundamentos",
   },
   {
-    id: "java-inicio",
+    id: "java-início",
     fileName: "certificado-inicio-java.pdf",
     title: "Certificado Início Java",
     issuer: "DIO",
@@ -224,7 +225,30 @@ const levelStyles = {
   Avançado: "bg-amber-500/10 text-amber-300 border-amber-500/30",
 } as const;
 
-const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: number }) => {
+type CertificationsText = {
+  cardThumbnailAlt: string;
+  cardGeneratingPreview: string;
+  cardTapOpenPdf: string;
+  cardPreviewUnavailable: string;
+  cardOpenDetails: string;
+  cardDownloadRoute: string;
+  cardOpenDetailsAria: string;
+  cardGoDownloadAria: string;
+  sectionTag: string;
+  sectionTitle: string;
+  sectionTitleAccent: string;
+  sectionSubtitle: string;
+  featuredLabel: string;
+  catalogLabel: string;
+  hideMore: string;
+  showMorePrefix: string;
+  showMoreSuffix: string;
+  moreSectionTitle: string;
+  ariaHideMore: string;
+  ariaShowMore: string;
+};
+
+const CertificationCard = memo(({ cert, rank, text }: { cert: Certification; rank?: number; text: CertificationsText }) => {
   const certificatePath = `${basePath}Certificados/${encodeURIComponent(cert.fileName)}`;
   const detailsPath = `/certificacoes/${cert.id}`;
   const downloadPath = `/certificacoes/${cert.id}/download`;
@@ -377,7 +401,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
           mobileThumbnailSrc ? (
             <img
               src={mobileThumbnailSrc}
-              alt={`Miniatura da primeira página do certificado ${cert.title}`}
+              alt={`${text.cardThumbnailAlt} ${cert.title}`}
               className="h-full w-full object-contain bg-card/70"
               loading="lazy"
             />
@@ -385,13 +409,13 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
             mobileCoverFallback
           ) : (
             <div className="h-full w-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-secondary/60 to-card text-center px-4">
-              <span className="text-sm font-medium text-foreground">Gerando prévia do certificado</span>
-              <span className="text-xs text-muted-foreground">Toque para abrir o PDF completo</span>
+              <span className="text-sm font-medium text-foreground">{text.cardGeneratingPreview}</span>
+              <span className="text-xs text-muted-foreground">{text.cardTapOpenPdf}</span>
             </div>
           )
         ) : isPreviewError ? (
           <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm px-3 text-center">
-            Prévia indisponível no dispositivo
+            {text.cardPreviewUnavailable}
           </div>
         ) : isMobilePreview ? (
           <iframe
@@ -422,7 +446,7 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
             }`}
           >
             <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-secondary/60 to-card text-muted-foreground text-sm px-3 text-center">
-              Prévia indisponível no dispositivo
+              {text.cardPreviewUnavailable}
             </div>
           </object>
         )}
@@ -454,20 +478,20 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
       <div className="mt-auto flex items-center gap-3">
         <a
           href={detailsPath}
-          aria-label={`Abrir detalhes do certificado ${cert.title}`}
+          aria-label={`${text.cardOpenDetailsAria} ${cert.title}`}
           className="inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary/20 hover:shadow-[0_8px_22px_-12px_hsl(var(--primary))]"
         >
           <ExternalLink className="h-4 w-4" />
-          Ver detalhes
+          {text.cardOpenDetails}
         </a>
 
         <a
           href={downloadPath}
-          aria-label={`Ir para download do certificado ${cert.title}`}
+          aria-label={`${text.cardGoDownloadAria} ${cert.title}`}
           className="inline-flex items-center gap-2 rounded-lg border border-border bg-card/40 px-3 py-1.5 text-sm font-medium text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card/80 hover:text-foreground hover:shadow-[0_8px_22px_-14px_hsl(var(--foreground)/0.35)]"
         >
           <Download className="h-4 w-4" />
-          Ir para download
+          {text.cardDownloadRoute}
         </a>
       </div>
     </article>
@@ -476,8 +500,58 @@ const CertificationCard = memo(({ cert, rank }: { cert: Certification; rank?: nu
 
 CertificationCard.displayName = "CertificationCard";
 
-const CertificationsSection = () => {
+type CertificationsSectionProps = {
+  language: SiteLanguage;
+};
+
+const CertificationsSection = ({ language }: CertificationsSectionProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const text: CertificationsText =
+    language === "pt"
+      ? {
+          cardThumbnailAlt: "Miniatura da primeira página do certificado",
+          cardGeneratingPreview: "Gerando prévia do certificado",
+          cardTapOpenPdf: "Toque para abrir o PDF completo",
+          cardPreviewUnavailable: "Prévia indisponivel no dispositivo",
+          cardOpenDetails: "Ver detalhes",
+          cardDownloadRoute: "Ir para download",
+          cardOpenDetailsAria: "Abrir detalhes do certificado",
+          cardGoDownloadAria: "Ir para download do certificado",
+          sectionTag: "Conhecimentos complementares",
+          sectionTitle: "Certificações e",
+          sectionTitleAccent: "Evolução Tecnica",
+          sectionSubtitle: "Trilhas concluídas em desenvolvimento, arquitetura, cloud e segurança, com foco em aplicação pratica.",
+          featuredLabel: "Destaques da trilha principal",
+          catalogLabel: "certificados no acervo",
+          hideMore: "Ocultar certificações complementares",
+          showMorePrefix: "Ver mais",
+          showMoreSuffix: "certificações",
+          moreSectionTitle: "Certificações complementares",
+          ariaHideMore: "Ocultar certificações complementares",
+          ariaShowMore: "Mostrar certificações complementares",
+        }
+      : {
+          cardThumbnailAlt: "Thumbnail of certificate first page",
+          cardGeneratingPreview: "Generating certificate preview",
+          cardTapOpenPdf: "Tap to open full PDF",
+          cardPreviewUnavailable: "Preview unavailable on this device",
+          cardOpenDetails: "View details",
+          cardDownloadRoute: "Go to download",
+          cardOpenDetailsAria: "Open certificate details",
+          cardGoDownloadAria: "Go to certificate download",
+          sectionTag: "Complementary knowledge",
+          sectionTitle: "Certifications and",
+          sectionTitleAccent: "Technical Growth",
+          sectionSubtitle: "Completed tracks in development, architecture, cloud and security with practical focus.",
+          featuredLabel: "Main track highlights",
+          catalogLabel: "certificates in portfolio",
+          hideMore: "Hide additional certifications",
+          showMorePrefix: "View",
+          showMoreSuffix: "more certifications",
+          moreSectionTitle: "Additional certifications",
+          ariaHideMore: "Hide additional certifications",
+          ariaShowMore: "Show additional certifications",
+        };
 
   const featuredCertifications = useMemo(() => {
     const map = new Map(certifications.map((cert) => [cert.id, cert] as const));
@@ -506,29 +580,29 @@ const CertificationsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex items-center justify-center gap-4 mb-6 animate-fade-up">
           <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50" />
-          <span className="text-sm font-medium text-primary tracking-widest uppercase">Conhecimentos complementares</span>
+          <span className="text-sm font-medium text-primary tracking-widest uppercase">{text.sectionTag}</span>
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50" />
         </div>
 
         <div className="text-center mb-16">
           <h2 className="font-display text-display-sm md:text-display-md mb-6 animate-fade-up delay-100">
-            Certificações e <span className="text-gradient">Evolução Técnica</span>
+            {text.sectionTitle} <span className="text-gradient">{text.sectionTitleAccent}</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-light animate-fade-up delay-200 leading-relaxed">
-            Trilhas concluídas em desenvolvimento, arquitetura, cloud e segurança, com foco em aplicação prática.
+            {text.sectionSubtitle}
           </p>
         </div>
 
         <div className="flex items-center justify-between gap-4 mb-6">
-          <p className="text-sm md:text-base text-muted-foreground">Destaques da trilha principal</p>
+          <p className="text-sm md:text-base text-muted-foreground">{text.featuredLabel}</p>
           <p className="text-xs md:text-sm uppercase tracking-wider text-primary/90">
-            {certifications.length} certificados no acervo
+            {certifications.length} {text.catalogLabel}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {featuredCertifications.map((cert, index) => (
-            <CertificationCard key={cert.id} cert={cert} rank={index + 1} />
+            <CertificationCard key={cert.id} cert={cert} rank={index + 1} text={text} />
           ))}
         </div>
 
@@ -538,10 +612,10 @@ const CertificationsSection = () => {
             onClick={() => setIsExpanded((prev) => !prev)}
             aria-expanded={isExpanded}
             aria-controls="certifications-more"
-            aria-label={isExpanded ? "Ocultar certificações complementares" : "Mostrar certificações complementares"}
+            aria-label={isExpanded ? text.ariaHideMore : text.ariaShowMore}
             className="group inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-5 py-3 text-sm md:text-base font-semibold text-primary hover:bg-primary/20 transition-all"
           >
-            {isExpanded ? "Ocultar certificações complementares" : `Ver mais ${otherCertifications.length} certificações`}
+            {isExpanded ? text.hideMore : `${text.showMorePrefix} ${otherCertifications.length} ${text.showMoreSuffix}`}
             {isExpanded ? (
               <ChevronUp className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
             ) : (
@@ -552,10 +626,10 @@ const CertificationsSection = () => {
 
         {isExpanded && (
           <div id="certifications-more" className="animate-fade-up">
-            <p className="text-sm md:text-base text-muted-foreground mb-5 text-center">Certificações complementares</p>
+            <p className="text-sm md:text-base text-muted-foreground mb-5 text-center">{text.moreSectionTitle}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-2">
               {otherCertifications.map((cert) => (
-                <CertificationCard key={cert.id} cert={cert} />
+                <CertificationCard key={cert.id} cert={cert} text={text} />
               ))}
             </div>
           </div>
@@ -566,3 +640,5 @@ const CertificationsSection = () => {
 };
 
 export default CertificationsSection;
+
+
