@@ -45,7 +45,7 @@ const AboutSection = ({ language }: AboutSectionProps) => {
           languagesTitle: "Idiomas",
           languages: [
             { name: "Português", level: "Nativo" },
-            { name: "Inglês", level: "Intermediário" },
+            { name: "Inglês", level: "Básico (leitura técnica)" },
           ],
           footer: "Compromisso com clareza técnica, ownership e evolução contínua do produto",
         }
@@ -86,7 +86,7 @@ const AboutSection = ({ language }: AboutSectionProps) => {
           languagesTitle: "Languages",
           languages: [
             { name: "Portuguese", level: "Native" },
-            { name: "English", level: "Intermediate" },
+            { name: "English", level: "Basic (technical reading)" },
           ],
           footer: "Committed to technical clarity, ownership and continuous product evolution",
         };

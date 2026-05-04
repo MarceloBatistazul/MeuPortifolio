@@ -26,6 +26,29 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
     language === "pt"
       ? [
           {
+            title: "Vibe RP - Portal de Eventos e Notícias",
+            problem:
+              "Cliente precisava de um portal de eventos e notícias para divulgar shows e atualizar conteúdo com frequência.",
+            solution:
+              "Desenvolvi uma plataforma com destaques, blog e agenda de eventos, conectando front-end React a API NestJS. Também implementei automações com IA para coletar, filtrar e padronizar notícias antes da publicação.",
+            technicalDecisions: [
+              "Front-end React + TypeScript com componentes reutilizáveis e organização por responsabilidade.",
+              "Back-end NestJS com DDD e módulos por domínio (eventos, notícias e destaques).",
+              "Cron jobs para coleta e atualização periódica de conteúdo.",
+              "IA para análise, filtragem e padronização da linguagem das notícias.",
+            ],
+            differentiators: [
+              "Atualização automática de conteúdo com IA.",
+              "Base preparada para moderação e controle de qualidade.",
+              "Arquitetura escalável para novos fluxos editoriais.",
+            ],
+            image: "/img/VibeRP.png",
+            tags: ["React", "TypeScript", "NestJS", "IA", "DDD", "REST API", "Tailwind CSS"],
+            github: null,
+            demo: null,
+            featured: true,
+          },
+          {
             title: "Joave Store - E-commerce",
             problem:
               "A operação precisava centralizar catálogo, carrinho e checkout com controle seguro de usuários e base de dados consistente para crescimento de vendas.",
@@ -130,6 +153,29 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
           },
         ]
       : [
+          {
+            title: "Vibe RP - Events & News Portal",
+            problem:
+              "The client needed an events and news portal to promote shows and keep content updated frequently.",
+            solution:
+              "I built a platform with highlights, blog, and an event schedule, connecting a React front end to a NestJS API. I also implemented AI automations to collect, filter, and standardize news before publishing.",
+            technicalDecisions: [
+              "React + TypeScript front end with reusable components organized by responsibility.",
+              "NestJS back end with DDD and domain modules (events, news, and highlights).",
+              "Cron jobs for periodic content collection and updates.",
+              "AI for news language analysis, filtering, and standardization.",
+            ],
+            differentiators: [
+              "Automatic content updates powered by AI.",
+              "Foundation prepared for moderation and quality control.",
+              "Scalable architecture for new editorial workflows.",
+            ],
+            image: "/img/VibeRP.png",
+            tags: ["React", "TypeScript", "NestJS", "AI", "DDD", "REST API", "Tailwind CSS"],
+            github: null,
+            demo: null,
+            featured: true,
+          },
           {
             title: "Joave Store - E-commerce",
             problem:
