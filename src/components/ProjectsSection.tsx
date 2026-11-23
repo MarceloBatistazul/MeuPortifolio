@@ -26,42 +26,45 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
     language === "pt"
       ? [
           {
-            title: "Vibe RP - Portal de Eventos e Notícias",
+            title: "Vibe RP – Portal de Eventos, Shows e Notícias | Desenvolvimento Full Stack",
             problem:
-              "Cliente precisava de um portal de eventos e notícias para divulgar shows e atualizar conteúdo com frequência.",
+              "Plataforma web para divulgação de eventos, shows, rodeios, notícias e conteúdos relacionados ao entretenimento.",
             solution:
-              "Desenvolvi uma plataforma com destaques, blog e agenda de eventos, conectando front-end React a API NestJS. Também implementei automações com IA para coletar, filtrar e padronizar notícias antes da publicação.",
+              "Desenvolvimento do front-end em React, TypeScript e Vite, com Tailwind CSS, componentes reutilizáveis e interface responsiva. Back-end em Node.js e NestJS com arquitetura modular por domínios de negócio. APIs RESTful integram o portal público ao CMS próprio, que gerencia eventos, notícias, blog, páginas institucionais e configurações. Banco PostgreSQL com Prisma ORM e migrations; arquivos e mídias armazenados diretamente no banco. Integração entre front-end e back-end com tratamento de requisições, autenticação e gerenciamento de dados. Aplicação publicada em produção, com frontend na Vercel e API e banco de dados no Render.",
             technicalDecisions: [
-              "Front-end React + TypeScript com componentes reutilizáveis e organização por responsabilidade.",
-              "Back-end NestJS com DDD e módulos por domínio (eventos, notícias e destaques).",
-              "Cron jobs para coleta e atualização periódica de conteúdo.",
-              "IA para análise, filtragem e padronização da linguagem das notícias.",
+              "Front-end em React, TypeScript e Vite, estilizado com Tailwind CSS e interface responsiva.",
+              "Back-end Node.js e NestJS com arquitetura modular e organização por domínios de negócio.",
+              "APIs RESTful para integração do portal público com o CMS próprio.",
+              "PostgreSQL com Prisma ORM e migrations para evolução do schema.",
+              "Gerenciamento de arquivos e mídias com armazenamento diretamente no banco de dados.",
+              "Deploy em produção: frontend na Vercel e API e banco de dados no Render.",
             ],
             differentiators: [
-              "Atualização automática de conteúdo com IA.",
-              "Base preparada para moderação e controle de qualidade.",
-              "Arquitetura escalável para novos fluxos editoriais.",
+              "CMS próprio para gerenciar eventos, notícias, blog, páginas institucionais e configurações do portal.",
+              "Integração com autenticação e gerenciamento dos dados do portal.",
+              "Stack: React, TypeScript, Vite, Tailwind CSS, Node.js, NestJS, Prisma ORM, PostgreSQL, REST API, Git, Vercel e Render.",
             ],
-            image: "/img/VibeRP.png",
-            tags: ["React", "TypeScript", "NestJS", "IA", "DDD", "REST API", "Tailwind CSS"],
+            image: "/img/image.png",
+            tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Node.js", "NestJS", "Prisma ORM", "PostgreSQL", "REST API", "Git", "Vercel", "Render"],
             github: null,
-            demo: null,
+            demo: "https://www.viberp.com.br/",
             featured: true,
           },
           {
-            title: "Joave Store - E-commerce",
+            title: "Joave Store – E-commerce Full Stack",
             problem:
-              "A operação precisava centralizar catálogo, carrinho e checkout com controle seguro de usuários e base de dados consistente para crescimento de vendas.",
+              "A Joave Store precisava de uma experiência de compra online que reunisse catálogo de produtos, carrinho e checkout, com gestão de usuários segura e dados organizados para apoiar a operação e o crescimento da loja.",
             solution:
-              "Implementei um e-commerce full stack com fluxo de compra completo, autenticação JWT, gerenciamento de produtos e persistência relacional para operação diária.",
+              "Desenvolvi uma aplicação de e-commerce full stack, conectando uma interface em React e TypeScript a um back-end em ASP.NET Core. A solução contempla gerenciamento de produtos, autenticação de usuários com JWT e persistência relacional em MySQL, estruturando o fluxo de compra para o uso diário da loja.",
             technicalDecisions: [
-              "Back-end em ASP.NET Core com separação por camadas para isolar regra de negócio.",
-              "Entity Framework Core para mapeamento e manutenção consistente das entidades.",
-              "JWT para sessão stateless e segurança em rotas críticas.",
+              "API desenvolvida em C# e ASP.NET Core, com camadas organizadas para separar responsabilidades e regras de negócio.",
+              "Entity Framework Core para mapear as entidades e integrar a aplicação ao banco de dados MySQL.",
+              "Autenticação baseada em JWT para proteger o acesso de usuários e operações restritas.",
+              "Front-end em React e TypeScript para apresentar o catálogo e os fluxos da loja.",
             ],
             differentiators: [
-              "Base pronta para expansão de catálogo e novos módulos comerciais.",
-              "Modelo de dados pensado para relatórios e integração futura.",
+              "Estrutura que centraliza o catálogo e os principais passos da jornada de compra.",
+              "Separação entre interface, API e persistência, facilitando a manutenção e a evolução do sistema.",
             ],
             image: "/img/JoaveLoja.png",
             tags: ["React", "TypeScript", "C#", ".NET", "Entity Framework Core", "MySQL", "JWT"],
@@ -154,42 +157,45 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
         ]
       : [
           {
-            title: "Vibe RP - Events & News Portal",
+            title: "Vibe RP – Events, Shows & News Portal | Full Stack Development",
             problem:
-              "The client needed an events and news portal to promote shows and keep content updated frequently.",
+              "A web platform for promoting events, shows, rodeos, news, and entertainment related content.",
             solution:
-              "I built a platform with highlights, blog, and an event schedule, connecting a React front end to a NestJS API. I also implemented AI automations to collect, filter, and standardize news before publishing.",
+              "Developed the front end with React, TypeScript, and Vite, using Tailwind CSS, reusable components, and a responsive interface. Built a Node.js and NestJS back end with modular business domain architecture. RESTful APIs connect the public portal to a custom CMS for managing events, news, blog posts, institutional pages, and portal settings. PostgreSQL is managed with Prisma ORM and migrations; files and media are stored directly in the database. Integrated the front end and back end with request handling, authentication, and data management. Deployed to production with the front end on Vercel and the API and database on Render.",
             technicalDecisions: [
-              "React + TypeScript front end with reusable components organized by responsibility.",
-              "NestJS back end with DDD and domain modules (events, news, and highlights).",
-              "Cron jobs for periodic content collection and updates.",
-              "AI for news language analysis, filtering, and standardization.",
+              "React, TypeScript, and Vite front end with Tailwind CSS and responsive reusable components.",
+              "Node.js and NestJS back end with modular architecture organized by business domain.",
+              "RESTful APIs connecting the public portal to its custom CMS.",
+              "PostgreSQL managed with Prisma ORM and migrations.",
+              "File and media management with content stored directly in the database.",
+              "Production deployment: front end on Vercel; API and database on Render.",
             ],
             differentiators: [
-              "Automatic content updates powered by AI.",
-              "Foundation prepared for moderation and quality control.",
-              "Scalable architecture for new editorial workflows.",
+              "Custom CMS for managing events, news, blog posts, institutional pages, and portal settings.",
+              "Integrated authentication and data management.",
+              "Stack: React, TypeScript, Vite, Tailwind CSS, Node.js, NestJS, Prisma ORM, PostgreSQL, REST API, Git, Vercel, and Render.",
             ],
-            image: "/img/VibeRP.png",
-            tags: ["React", "TypeScript", "NestJS", "AI", "DDD", "REST API", "Tailwind CSS"],
+            image: "/img/image.png",
+            tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Node.js", "NestJS", "Prisma ORM", "PostgreSQL", "REST API", "Git", "Vercel", "Render"],
             github: null,
-            demo: null,
+            demo: "https://www.viberp.com.br/",
             featured: true,
           },
           {
-            title: "Joave Store - E-commerce",
+            title: "Joave Store – Full Stack E-commerce",
             problem:
-              "The operation needed a unified catalog, cart and checkout flow with secure user management and a consistent data layer for sales growth.",
+              "Joave Store needed an online shopping experience that brought together its product catalog, cart, and checkout, with secure user management and organized data to support daily operations and growth.",
             solution:
-              "I built a full stack e-commerce system with complete purchase flow, JWT authentication, product management and relational persistence for daily operation.",
+              "Built a full stack e-commerce application, connecting a React and TypeScript interface to an ASP.NET Core back end. The solution includes product management, JWT user authentication, and relational persistence with MySQL, supporting the store's day-to-day purchase flow.",
             technicalDecisions: [
-              "ASP.NET Core back end with layered separation to isolate business logic.",
-              "Entity Framework Core for reliable entity mapping and maintainability.",
-              "JWT for stateless sessions and route-level protection.",
+              "C# and ASP.NET Core API, organized in layers to separate responsibilities and business logic.",
+              "Entity Framework Core for entity mapping and integration with the MySQL database.",
+              "JWT-based authentication to protect user access and restricted operations.",
+              "React and TypeScript front end for the product catalog and store workflows.",
             ],
             differentiators: [
-              "Foundation prepared for catalog expansion and new commercial modules.",
-              "Data model ready for reporting and future integrations.",
+              "A unified structure for the product catalog and key steps in the shopping journey.",
+              "Separation of interface, API, and persistence supports maintenance and future development.",
             ],
             image: "/img/JoaveLoja.png",
             tags: ["React", "TypeScript", "C#", ".NET", "Entity Framework Core", "MySQL", "JWT"],
@@ -341,10 +347,10 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
             .map((project, index) => (
               <div
                 key={project.title}
-                className="group premium-card overflow-hidden animate-fade-up"
+                className="group premium-card h-full flex flex-col overflow-hidden animate-fade-up"
                 style={{ animationDelay: `${(index + 3) * 100}ms` }}
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 shrink-0 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -387,7 +393,7 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
                   </div>
                 </div>
 
-                <div className="p-8">
+                <div className="flex flex-1 flex-col p-8">
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <h3 className="font-display text-xl font-semibold group-hover:text-primary transition-colors duration-300">
                       {project.title}
@@ -427,7 +433,7 @@ const ProjectsSection = ({ language }: ProjectsSectionProps) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="mt-auto flex flex-wrap gap-2 pt-6">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}

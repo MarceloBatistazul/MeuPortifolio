@@ -1,4 +1,7 @@
-﻿import { CheckCircle2, Cpu, FileCode2, MessageSquare, Rocket, Users } from "lucide-react";
+﻿
+
+
+import { CheckCircle2, Cpu, FileCode2, MessageSquare, Rocket, Users } from "lucide-react";
 import type { SiteLanguage } from "@/pages/Index";
 
 type DifferentialsSectionProps = {

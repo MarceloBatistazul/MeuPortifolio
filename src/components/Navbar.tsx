@@ -37,7 +37,7 @@ const Navbar = ({ language, onLanguageChange }: NavbarProps) => {
   const navLinks =
     language === "pt"
       ? [
-          { href: "/doc/CV-Marcelo.pdf", label: "CV", isDownload: true },
+          { href: "/doc/CV%20Marcelo%202026.pdf", label: "CV", isDownload: true },
           { href: "#sobre", label: "Sobre" },
           { href: "#stack", label: "Stack" },
           { href: "#projetos", label: "Projetos" },
@@ -46,7 +46,7 @@ const Navbar = ({ language, onLanguageChange }: NavbarProps) => {
           { href: "#diferenciais", label: "Diferenciais" },
         ]
       : [
-          { href: "/doc/CV-Marcelo.pdf", label: "Resume", isDownload: true },
+          { href: "/doc/CV%20Marcelo%202026.pdf", label: "Resume", isDownload: true },
           { href: "#sobre", label: "About" },
           { href: "#stack", label: "Stack" },
           { href: "#projetos", label: "Projects" },

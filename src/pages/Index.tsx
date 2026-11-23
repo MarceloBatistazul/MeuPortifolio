@@ -9,7 +9,7 @@ import CertificationsSection from "@/components/CertificationsSection";
 import DifferentialsSection from "@/components/DifferentialsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
-
+  
 export type SiteLanguage = "pt" | "en";
 
 const Index = () => {
